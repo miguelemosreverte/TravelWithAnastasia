@@ -210,7 +210,12 @@ The ticket doesn't specify whether Scooby Doo travels in-cabin or cargo, but Tur
 **Source:** `Tblisi - Istambul.pdf`
 
 **Evidence:**
-The booking document for TBS→IST does not show any pet fees or pet-related information. The "Traveling with a pet" section in the booking shows an expandable option but the details are not visible in the PDF.
+The booking document shows a "🐾 Traveling with a pet" section with a dropdown arrow, but this section is collapsed in the PDF and the details are not visible. No pet fees are shown in the visible portions of the booking.
+
+**What we know:**
+- The booking interface includes pet travel functionality (section exists)
+- Pet details are hidden in the collapsed section
+- No visible confirmation that Scooby Doo is included in this booking
 
 **Action Required:** Contact Turkish Airlines to:
 1. Confirm if Scooby Doo can be added to this flight
@@ -224,7 +229,13 @@ The booking document for TBS→IST does not show any pet fees or pet-related inf
 **Source:** `Istambul - Buenos Aires.pdf`
 
 **Evidence:**
-The booking document for IST→EZE does not show any pet fees or pet-related information. Similar to the previous segment, there is a "Traveling with a pet" section but the details are not visible.
+The booking document shows a "🐾 Traveling with a pet" section with a dropdown arrow at the bottom of page 1, but this section is collapsed in the PDF and the details are not visible. No pet fees are shown in the visible portions of the booking.
+
+**What we know:**
+- The booking interface includes pet travel functionality (section exists)
+- Pet details are hidden in the collapsed section
+- No visible confirmation that Scooby Doo is included in this booking
+- This is a Basic Economy fare, which may have restrictions on pet travel
 
 **Additional Considerations:**
 - Argentina has specific pet import requirements (health certificates, vaccinations, etc.)
@@ -244,8 +255,8 @@ The booking document for IST→EZE does not show any pet fees or pet-related inf
 - ✅ Scooby Doo can travel CPH→IST→TBS (DKK 2,665 paid)
 
 **Needs Verification:**
-- ⚠️ TBS→IST (no pet documentation in booking)
-- ⚠️ IST→EZE (no pet documentation in booking, Argentina import requirements)
+- ⚠️ TBS→IST (pet section exists in booking but is collapsed/not visible in PDF)
+- ⚠️ IST→EZE (pet section exists in booking but is collapsed/not visible in PDF, Argentina import requirements)
 
 **Recommendation:**
 Contact Turkish Airlines **immediately** to:
