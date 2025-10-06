@@ -470,6 +470,112 @@
             </div>
         </section>
 
+        <!-- Pet Travel Section -->
+        <section class="mb-12 bg-white shadow-sm border border-gray-200 p-6">
+            <h2 class="wsj-headline text-3xl mb-6">Pet Travel: Scooby Doo's Journey</h2>
+
+            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-6">
+                <h3 class="font-bold text-lg mb-2">Can Scooby Doo travel from Copenhagen to Buenos Aires?</h3>
+                <p class="text-sm"><strong>Answer:</strong> Scooby Doo can travel from Copenhagen to Tbilisi (confirmed), but documentation for subsequent segments (Tbilisi → Istanbul → Buenos Aires) is not available in the tickets.</p>
+            </div>
+
+            <!-- CPH to TBS - Confirmed -->
+            <div class="mb-6 border-l-4 border-green-500 pl-4">
+                <h3 class="font-bold text-lg mb-2">Copenhagen → Tbilisi (Confirmed ✓)</h3>
+                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Scooby Doo - Copenhagen Tblisi.png')" class="pdf-link">Scooby Doo - Copenhagen Tblisi.png</a></p>
+
+                <div class="bg-gray-50 p-3 rounded text-sm">
+                    <p class="font-semibold mb-2">Evidence from fare breakdown:</p>
+                    <ul class="space-y-1 text-gray-700">
+                        <li><strong>"Pet carriage fee":</strong> DKK 2,665</li>
+                        <li><strong>"Pet transportation fee":</strong> DKK 2,665</li>
+                    </ul>
+                    <p class="mt-3 text-gray-700">This is included in Miguel's booking for the Turkish Airlines flights CPH→IST→TBS.</p>
+                </div>
+
+                <p class="mt-2 text-sm text-green-700">✓ Scooby Doo is confirmed on this segment with fees paid.</p>
+            </div>
+
+            <!-- TBS to IST - Unknown -->
+            <div class="mb-6 border-l-4 border-amber-500 pl-4">
+                <h3 class="font-bold text-lg mb-2">Tbilisi → Istanbul (Status: Unknown ⚠️)</h3>
+                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Tblisi - Istambul.pdf')" class="pdf-link">Tblisi - Istambul.pdf</a></p>
+
+                <div class="bg-amber-50 p-3 rounded text-sm">
+                    <p class="font-semibold mb-2">Evidence:</p>
+                    <p class="text-gray-700">The booking document for TBS→IST does not show any pet fees or pet-related information. The "Traveling with a pet" section shows an expandable option but details are not visible in the PDF.</p>
+                </div>
+
+                <div class="mt-3 bg-white border border-amber-300 p-3 rounded text-sm">
+                    <p class="font-semibold mb-2">Action Required:</p>
+                    <ol class="list-decimal list-inside space-y-1 text-gray-700">
+                        <li>Contact Turkish Airlines to confirm if Scooby Doo can be added</li>
+                        <li>Verify pet fees for this segment</li>
+                        <li>Ensure pet documentation requirements are met</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- IST to EZE - Unknown -->
+            <div class="mb-6 border-l-4 border-amber-500 pl-4">
+                <h3 class="font-bold text-lg mb-2">Istanbul → Buenos Aires (Status: Unknown ⚠️)</h3>
+                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Istambul - Buenos Aires.pdf')" class="pdf-link">Istambul - Buenos Aires.pdf</a></p>
+
+                <div class="bg-amber-50 p-3 rounded text-sm">
+                    <p class="font-semibold mb-2">Evidence:</p>
+                    <p class="text-gray-700">The booking document for IST→EZE does not show any pet fees or pet-related information. Similar to the previous segment, there is a "Traveling with a pet" section but details are not visible.</p>
+
+                    <p class="font-semibold mt-3 mb-2">Additional Considerations:</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>Argentina has specific pet import requirements (health certificates, vaccinations)</li>
+                        <li>Turkish Airlines long-haul pet policies may differ from short-haul</li>
+                        <li>Basic Economy fares may have restrictions on pet travel</li>
+                    </ul>
+                </div>
+
+                <div class="mt-3 bg-white border border-amber-300 p-3 rounded text-sm">
+                    <p class="font-semibold mb-2">Action Required:</p>
+                    <ol class="list-decimal list-inside space-y-1 text-gray-700">
+                        <li>Confirm if pets are allowed on Basic Economy fares (IST→EZE)</li>
+                        <li>Verify pet fees for this long-haul segment</li>
+                        <li>Obtain information about Argentina's pet import regulations</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="mt-6 bg-gray-100 p-4 rounded-lg">
+                <h3 class="font-bold text-lg mb-3">Pet Travel Summary</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p class="font-semibold mb-2">Confirmed:</p>
+                        <p class="text-green-700">✅ CPH→IST→TBS (DKK 2,665 paid)</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold mb-2">Needs Verification:</p>
+                        <ul class="space-y-1 text-amber-700">
+                            <li>⚠️ TBS→IST (no pet documentation)</li>
+                            <li>⚠️ IST→EZE (no pet documentation)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-4 bg-blue-50 border border-blue-200 p-3 rounded text-sm">
+                    <p class="font-semibold mb-2">Recommendation:</p>
+                    <p class="text-gray-700">Contact Turkish Airlines <strong>immediately</strong> to:</p>
+                    <ol class="list-decimal list-inside space-y-1 text-gray-700 mt-2">
+                        <li>Add Scooby Doo to the TBS→IST and IST→EZE flights</li>
+                        <li>Confirm all pet fees</li>
+                        <li>Obtain documentation requirements for Argentina</li>
+                        <li>Verify pet carrier dimensions and weight limits</li>
+                    </ol>
+                    <p class="mt-3 text-gray-600 italic"><strong>Important:</strong> Pet travel must be arranged in advance. Last-minute additions may not be possible, especially on international flights.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Data Verification Section -->
         <section class="mb-12 bg-white shadow-sm border border-gray-200 p-6">
             <h2 class="wsj-headline text-3xl mb-6">Data Verification & Sources</h2>

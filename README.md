@@ -181,6 +181,83 @@ For the Red Wings segments, you'll need smaller, softer bags. For Turkish Airlin
 
 ---
 
+## Pet Travel: Scooby Doo's Journey
+
+### Can Scooby Doo travel from Copenhagen to Buenos Aires?
+
+**Answer: Scooby Doo can travel from Copenhagen to Tbilisi, but documentation for subsequent segments (Tbilisi → Istanbul → Buenos Aires) is not available in the tickets.**
+
+### Verified Pet Travel Information
+
+#### Copenhagen → Tbilisi (Confirmed ✓)
+
+**Source:** `Scooby Doo - Copenhagen Tblisi.png`
+
+**Evidence:**
+The fare breakdown clearly shows:
+- **"Pet carriage fee"**: DKK 2,665
+- **"Pet transportation fee"**: DKK 2,665
+
+This is included in Miguel's booking for the Turkish Airlines flights CPH→IST→TBS.
+
+**Turkish Airlines Pet Policy** (from Miguel's e-ticket):
+The ticket doesn't specify whether Scooby Doo travels in-cabin or cargo, but Turkish Airlines allows pets on their flights with proper fees paid.
+
+---
+
+#### Tbilisi → Istanbul (Status: Unknown ⚠️)
+
+**Source:** `Tblisi - Istambul.pdf`
+
+**Evidence:**
+The booking document for TBS→IST does not show any pet fees or pet-related information. The "Traveling with a pet" section in the booking shows an expandable option but the details are not visible in the PDF.
+
+**Action Required:** Contact Turkish Airlines to:
+1. Confirm if Scooby Doo can be added to this flight
+2. Verify pet fees for this segment
+3. Ensure pet documentation requirements are met
+
+---
+
+#### Istanbul → Buenos Aires (Status: Unknown ⚠️)
+
+**Source:** `Istambul - Buenos Aires.pdf`
+
+**Evidence:**
+The booking document for IST→EZE does not show any pet fees or pet-related information. Similar to the previous segment, there is a "Traveling with a pet" section but the details are not visible.
+
+**Additional Considerations:**
+- Argentina has specific pet import requirements (health certificates, vaccinations, etc.)
+- Turkish Airlines long-haul pet policies may differ from short-haul
+- Basic Economy fares may have restrictions on pet travel
+
+**Action Required:** Contact Turkish Airlines to:
+1. Confirm if pets are allowed on Basic Economy fares (IST→EZE)
+2. Verify pet fees for this long-haul segment
+3. Obtain information about Argentina's pet import regulations
+
+---
+
+### Pet Travel Summary
+
+**Confirmed:**
+- ✅ Scooby Doo can travel CPH→IST→TBS (DKK 2,665 paid)
+
+**Needs Verification:**
+- ⚠️ TBS→IST (no pet documentation in booking)
+- ⚠️ IST→EZE (no pet documentation in booking, Argentina import requirements)
+
+**Recommendation:**
+Contact Turkish Airlines **immediately** to:
+1. Add Scooby Doo to the TBS→IST and IST→EZE flights
+2. Confirm all pet fees
+3. Obtain documentation requirements for Argentina
+4. Verify pet carrier dimensions and weight limits
+
+**Important:** Pet travel must be arranged in advance. Last-minute additions may not be possible, especially on international flights.
+
+---
+
 ## Data Verification & Sources
 
 All baggage allowances cited below are taken directly from the official e-tickets and booking documents. Here's the evidence for each claim:
