@@ -262,6 +262,34 @@ Select **"Aumento del equipaje de mano"** (10 kg upgrade) for:
 **Why not checked baggage?**
 Checked baggage on Red Wings cannot be carried as cabin on Turkish Airlines flights. The upgrade option ensures consistent cabin bags throughout.
 
+### Important: Bag Size Restrictions
+
+**Note for Kazan→Tbilisi flight:** 4 passengers travel on this segment (Leonid, Anastasia, Georgii, Stanislav). Only 3 continue to Turkish Airlines flights (Anastasia, Georgii, Stanislav) as Leonid returns to Kazan the same day.
+
+When using consistent cabin bags across all flights, the **size restrictions** are:
+
+**Red Wings (most restrictive):**
+- Maximum dimensions: **40×30×20 cm**
+- This is the limiting factor for consistent bags
+
+**Turkish Airlines:**
+- Carry-on: 55×40×23 cm
+- Personal item: 40×30×15 cm
+
+**What this means practically:**
+
+❌ **Will NOT work:**
+- Standard roller suitcases (typically 55-80 cm height)
+- Typical cabin-sized rollers (55×40×23 cm - too large for Red Wings)
+
+✅ **Will work:**
+- **Backpacks** within 40×30×20 cm dimensions
+- **Soft duffel bags** that compress to fit
+- **Small wheeled bags** specifically at 40×30×20 cm (uncommon but available)
+- Laptop-sized backpacks or under-seat bags
+
+**The 10 kg weight upgrade helps with capacity, but the size remains limited to 40×30×20 cm on Red Wings flights.**
+
 ![Red Wings Baggage Upgrade Options](red-wings-baggage-upgrade-menu.png)
 
 ---
