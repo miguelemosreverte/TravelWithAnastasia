@@ -273,6 +273,7 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 
 #### Flight 1: Copenhagen → Tbilisi (via Istanbul)
 - **Reservation Code (PNR):** S37S3U
+- **Ticket Number:** 235-2271903912
 - **Passenger:** Miguel Lemos
 - **Travel Date:** October 17-18, 2025
 - **Flights:**
@@ -285,6 +286,7 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 
 #### Flight 4: Tbilisi → Istanbul
 - **Reservation Code (PNR):** WGZEHM
+- **Ticket Numbers:** Not yet issued (booking confirmed)
 - **Passengers:** Miguel Lemos, Anastasiia Viazova, Georgii Viazov, Stanislav Viazova (infant)
 - **Travel Date:** November 20, 2025
 - **Airline:** Turkish Airlines
@@ -295,6 +297,7 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 
 #### Flight 5: Istanbul → Buenos Aires
 - **Reservation Code (PNR):** TF3BSV
+- **Ticket Numbers:** Not yet issued (booking confirmed)
 - **Passengers:** Miguel Lemos, Anastasiia Viazova, Georgii Viazov, Stanislav Viazova (infant)
 - **Travel Date:** November 21, 2025
 - **Airline:** Turkish Airlines
@@ -309,7 +312,11 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 
 #### Flight 2: Kazan → Tbilisi
 - **Reservation Code:** B18565959305
-- **Passengers:** Anastasiia Viazova, Georgii Viazov, Leonid Viazov, Stanislav Viazova (infant)
+- **Ticket Numbers:**
+  - Anastasiia Viazova: 309-6126464288
+  - Georgii Viazov: 309-6126464289
+  - Leonid Viazov: 309-6126464287
+  - Stanislav Viazova (infant): 309-6126464290
 - **Travel Date:** October 25, 2025
 - **Flight:** WZ 1501, Kazan (KZN) → Tbilisi (TBS), 09:15 - 13:20
 - **Class:** Economy (FLTOW)
@@ -318,6 +325,7 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 ---
 
 #### Flight 3: Tbilisi → Kazan (Leonid Return)
+- **Ticket Number:** 309-6171827315
 - **Passenger:** Leonid Viazov
 - **Travel Date:** October 25, 2025
 - **Flight:** WZ 1502, Tbilisi (TBS) → Kazan (KZN), 14:25 - 16:20
