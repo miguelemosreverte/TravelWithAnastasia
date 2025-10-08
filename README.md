@@ -205,67 +205,141 @@ The ticket doesn't specify whether Scooby Doo travels in-cabin or cargo, but Tur
 
 ---
 
-#### Tbilisi → Istanbul (Status: Unknown ⚠️)
+#### Tbilisi → Istanbul (Confirmed ✓)
 
 **Source:** `Tblisi - Istambul.pdf`
 
 **Evidence:**
-The booking document shows a "🐾 Traveling with a pet" section with a dropdown arrow, but this section is collapsed in the PDF and the details are not visible. No pet fees are shown in the visible portions of the booking.
+The booking document shows a "🐾 Traveling with a pet" section at the bottom of page 1 with complete pet details:
 
-**What we know:**
-- The booking interface includes pet travel functionality (section exists)
-- Pet details are hidden in the collapsed section
-- No visible confirmation that Scooby Doo is included in this booking
+**Tbilisi (TBS) - Istanbul (IST)**
+- **Passenger name:** MR. MIGUEL LEMOS
+- **Type and breed:** DOG / BLACK AND TAN TERRIER
+- **Pet dimensions:** 15 kg - 46×35×24 cm
+- **Pet fee:** TRY 16,916
 
-**Action Required:** Contact Turkish Airlines to:
-1. Confirm if Scooby Doo can be added to this flight
-2. Verify pet fees for this segment
-3. Ensure pet documentation requirements are met
+Scooby Doo is confirmed on this flight segment.
 
 ---
 
-#### Istanbul → Buenos Aires (Status: Unknown ⚠️)
+#### Istanbul → Buenos Aires (Confirmed ✓)
 
 **Source:** `Istambul - Buenos Aires.pdf`
 
 **Evidence:**
-The booking document shows a "🐾 Traveling with a pet" section with a dropdown arrow at the bottom of page 1, but this section is collapsed in the PDF and the details are not visible. No pet fees are shown in the visible portions of the booking.
+The booking document shows a "🐾 Traveling with a pet" section at the bottom of page 1 with complete pet details:
 
-**What we know:**
-- The booking interface includes pet travel functionality (section exists)
-- Pet details are hidden in the collapsed section
-- No visible confirmation that Scooby Doo is included in this booking
-- This is a Basic Economy fare, which may have restrictions on pet travel
+**Istanbul (IST) - Buenos Aires (EZE)**
+- **Passenger name:** MR. MIGUEL LEMOS
+- **Type and breed:** DOG / BLACK AND TAN TERRIER
+- **Pet dimensions:** 15 kg - 45×30×25 cm
+- **Pet fee:** TRY 34,727.00
 
-**Additional Considerations:**
-- Argentina has specific pet import requirements (health certificates, vaccinations, etc.)
-- Turkish Airlines long-haul pet policies may differ from short-haul
-- Basic Economy fares may have restrictions on pet travel
+Scooby Doo is confirmed on this flight segment.
 
-**Action Required:** Contact Turkish Airlines to:
-1. Confirm if pets are allowed on Basic Economy fares (IST→EZE)
-2. Verify pet fees for this long-haul segment
-3. Obtain information about Argentina's pet import regulations
+**Note:** Argentina has specific pet import requirements (health certificates, vaccinations, etc.). Ensure all documentation is prepared before travel.
 
 ---
 
 ### Pet Travel Summary
 
-**Confirmed:**
-- ✅ Scooby Doo can travel CPH→IST→TBS (DKK 2,665 paid)
+**Scooby Doo can travel the complete route from Copenhagen to Buenos Aires! ✅**
 
-**Needs Verification:**
-- ⚠️ TBS→IST (pet section exists in booking but is collapsed/not visible in PDF)
-- ⚠️ IST→EZE (pet section exists in booking but is collapsed/not visible in PDF, Argentina import requirements)
+All three Turkish Airlines flight segments have confirmed pet bookings:
 
-**Recommendation:**
-Contact Turkish Airlines **immediately** to:
-1. Add Scooby Doo to the TBS→IST and IST→EZE flights
-2. Confirm all pet fees
-3. Obtain documentation requirements for Argentina
-4. Verify pet carrier dimensions and weight limits
+1. ✅ **CPH→IST→TBS** (Oct 17-18): DKK 2,665
+2. ✅ **TBS→IST** (Nov 20): TRY 16,916
+3. ✅ **IST→EZE** (Nov 21): TRY 34,727.00
 
-**Important:** Pet travel must be arranged in advance. Last-minute additions may not be possible, especially on international flights.
+**Pet Details:**
+- **Type and breed:** Dog / Black and Tan Terrier
+- **Weight:** 15 kg
+- **Carrier dimensions:** Approximately 45-46 × 30-35 × 24-25 cm
+- **Total pet fees:** DKK 2,665 + TRY 51,643.00
+
+**Important Reminders:**
+- Ensure all pet documentation is prepared (health certificates, vaccinations)
+- Argentina has specific pet import requirements - verify compliance before travel
+- Confirm pet carrier meets airline specifications
+- Bring copies of all pet booking confirmations and payment receipts
+
+---
+
+## Call Reference Information
+
+### For Turkish Airlines Support Call
+
+Use this information when calling Turkish Airlines about baggage allowances, pet travel, or booking modifications:
+
+#### Flight 1: Copenhagen → Tbilisi (via Istanbul)
+- **Reservation Code (PNR):** S37S3U
+- **Passenger:** Miguel Lemos
+- **Travel Date:** October 17-18, 2025
+- **Flights:**
+  - TK 1786: Copenhagen (CPH) → Istanbul (IST), Oct 17, 19:20 - 23:40
+  - TK 0376: Istanbul (IST) → Tbilisi (TBS), Oct 18, 02:10 - 05:30
+- **Class:** Economy (Q)
+- **Pet:** Scooby Doo (Dog / Black and Tan Terrier, 15 kg) - **Confirmed, Fee: DKK 2,665**
+
+---
+
+#### Flight 4: Tbilisi → Istanbul
+- **Reservation Code (PNR):** WGZEHM
+- **Passengers:** Miguel Lemos, Anastasiia Viazova, Georgii Viazov, Stanislav Viazova (infant)
+- **Travel Date:** November 20, 2025
+- **Airline:** Turkish Airlines
+- **Route:** Tbilisi (TBS) → Istanbul (IST)
+- **Pet:** Scooby Doo (Dog / Black and Tan Terrier, 15 kg, 46×35×24 cm) - **Confirmed, Fee: TRY 16,916**
+
+---
+
+#### Flight 5: Istanbul → Buenos Aires
+- **Reservation Code (PNR):** TF3BSV
+- **Passengers:** Miguel Lemos, Anastasiia Viazova, Georgii Viazov, Stanislav Viazova (infant)
+- **Travel Date:** November 21, 2025
+- **Airline:** Turkish Airlines
+- **Flight:** Istanbul (IST) → Buenos Aires (EZE)
+- **Fare Type:** Basic Economy
+- **Pet:** Scooby Doo (Dog / Black and Tan Terrier, 15 kg, 45×30×25 cm) - **Confirmed, Fee: TRY 34,727.00**
+- **Important:** Basic Economy fare - checked baggage NOT included (0 kg). Cabin baggage: 4 passengers × 12 kg each = 48 kg total
+
+---
+
+### For Red Wings Airlines Support Call
+
+#### Flight 2: Kazan → Tbilisi
+- **Reservation Code:** B18565959305
+- **Passengers:** Anastasiia Viazova, Georgii Viazov, Leonid Viazov, Stanislav Viazova (infant)
+- **Travel Date:** October 25, 2025
+- **Flight:** WZ 1501, Kazan (KZN) → Tbilisi (TBS), 09:15 - 13:20
+- **Class:** Economy (FLTOW)
+- **Baggage:** Hand baggage only - 5 kg per adult, 10 kg for infant (40×30×20 cm)
+
+---
+
+#### Flight 3: Tbilisi → Kazan (Leonid Return)
+- **Passenger:** Leonid Viazov
+- **Travel Date:** October 25, 2025
+- **Flight:** WZ 1502, Tbilisi (TBS) → Kazan (KZN), 14:25 - 16:20
+- **Class:** Economy (FLTOW)
+- **Baggage:** Hand baggage only - 5 kg (40×30×20 cm)
+
+---
+
+### Quick Reference Summary
+
+**Turkish Airlines Reservations:**
+- S37S3U (Miguel, Oct 17-18, CPH→TBS)
+- WGZEHM (4 passengers, Nov 20, TBS→IST)
+- TF3BSV (4 passengers, Nov 21, IST→EZE)
+
+**Red Wings Reservation:**
+- B18565959305 (4 passengers, Oct 25, KZN→TBS)
+- Leonid return (Oct 25, TBS→KZN) - Check ticket for reservation code
+
+**Pet Travel (Turkish Airlines only):**
+- All three Turkish Airlines flights have Scooby Doo confirmed
+- Total pet fees: DKK 2,665 + TRY 51,643.00
 
 ---
 
