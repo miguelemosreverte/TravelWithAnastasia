@@ -4,7 +4,11 @@
 
 **Journey:** Copenhagen → Tbilisi → Buenos Aires
 **Dates:** October 17 - November 21, 2025
-**Travelers:** Miguel, Anastasia, Georgii, Leonid, Stanislav (infant), Scooby Doo (pet)
+**Travelers:**
+- Adults: Miguel Lemos, Anastasia Viazova, Leonid Viazov
+- Child: Georgii Viazov (3 years old)
+- Infant: Stanislav Viazov (1 year old)
+- Pet: Scooby Doo
 
 ---
 
@@ -36,7 +40,10 @@
 ---
 
 ### 2. October 25, 2025: Kazan → Tbilisi
-**Passengers:** Anastasia, Georgii, Leonid, Stanislav (infant)
+**Passengers:**
+- **Adults:** Anastasia Viazova, Leonid Viazov (2)
+- **Child:** Georgii Viazov (3 years old)
+- **Infant:** Stanislav Viazov (1 year old)
 
 **Flight:** WZ 1501 - Kazan (KZN) → Tbilisi (TBS)
 - Oct 25, 09:15 → Oct 25, 13:20
@@ -47,17 +54,22 @@
 
 **Baggage per passenger:**
 
-**Adults (Anastasia, Georgii, Leonid):**
+**Adults (Anastasia, Leonid):**
 - Checked: Not included in fare
 - Hand baggage: 1 piece × 5 kg per passenger (40×30×20 cm)
 - **Total per adult: 5 kg cabin only**
 
-**Infant (Stanislav):**
+**Child (Georgii, 3 years):**
+- Checked: Not included in fare
+- Hand baggage: 1 piece × 5 kg (40×30×20 cm)
+- **Total: 5 kg cabin only**
+
+**Infant (Stanislav, 1 year):**
 - Checked: Not included in fare
 - Hand baggage: 1 piece × 10 kg
-- **Total for infant: 10 kg cabin only**
+- **Total: 10 kg cabin only**
 
-**Group total:** 25 kg cabin (3 adults × 5 kg + 1 infant × 10 kg)
+**Group total:** 25 kg cabin (2 adults × 5 kg + 1 child × 5 kg + 1 infant × 10 kg)
 
 ---
 
@@ -78,47 +90,66 @@
 ---
 
 ### 4. November 20, 2025: Tbilisi → Istanbul
-**Passengers:** Miguel, Anastasia, Georgii, Stanislav (infant) - 4 people
+**Passengers:**
+- **Adults:** Miguel Lemos, Anastasia Viazova (2)
+- **Child:** Georgii Viazov (3 years old)
+- **Infant:** Stanislav Viazov (1 year old)
 
 **Flight:** Turkish Airlines - Tbilisi (TBS) → Istanbul (IST)
 **Reservation:** WGZEHM
 
-**Baggage per passenger:**
+**Baggage allowance (confirmed with Turkish Airlines):**
 
-**Adults (Miguel, Anastasia, Georgii):**
+**Adults (Miguel, Anastasia):**
 - Checked: 1 piece × 23 kg (max 158 cm)
 - Carry-on: 1 piece × 8 kg (55×40×23 cm)
 - Personal item: 1 piece × 4 kg (40×30×15 cm - under seat)
 - **Total per adult: 35 kg** (23 kg checked + 12 kg cabin)
 
-**Infant (Stanislav):**
-- Checked: Per airline policy (contact airline)
-- Carry-on: 1 piece × 8 kg (55×40×23 cm)
-- Stroller: Allowed (can be gate-checked or carried if ≤8 kg)
-- **Total for infant: 8 kg cabin + stroller**
+**Child (Georgii, 3 years):**
+- Same as adult: 1 piece × 23 kg checked + 12 kg cabin
+- **Total: 35 kg**
 
-**Group total:** ~105 kg checked + 44 kg cabin = **~149 kg**
+**Infant (Stanislav, 1 year):**
+- Checked: Typically 1 piece × 10 kg (or per airline policy)
+- Carry-on: 1 piece × 8 kg
+- Stroller: Allowed (can be gate-checked)
+- **Total: 10 kg checked + 8 kg cabin + stroller**
+
+**Group total (per Turkish Airlines rep): 70 kg for adults**
+**Note:** The representative confirmed 70 kg total for the 2 adults (2 × 35 kg). Child and infant allowances apply additionally.
 
 ---
 
 ### 5. November 21, 2025: Istanbul → Buenos Aires
-**Passengers:** Miguel, Anastasia, Georgii, Stanislav (infant) - 4 people
+**Passengers:**
+- **Adults:** Miguel Lemos, Anastasia Viazova (2)
+- **Child:** Georgii Viazov (3 years old)
+- **Infant:** Stanislav Viazov (1 year old)
 
 **Flight:** Turkish Airlines - Istanbul (IST) → Buenos Aires (EZE)
 **Reservation:** TF3BSV
 **Fare type:** Basic Economy
 
-**Baggage per passenger:**
+**Baggage allowance (confirmed with Turkish Airlines):**
 
-**All passengers (adults & infant):**
+**Adults (Miguel, Anastasia):**
 - Checked: Not included in basic economy fare
 - Carry-on: 1 piece × 8 kg (55×40×23 cm)
 - Personal item: 1 piece × 4 kg (40×30×15 cm - under seat)
-- **Total per person: 12 kg cabin only**
+- **Total per adult: 12 kg cabin only**
 
-**Group total:** 48 kg cabin (4 passengers × 12 kg)
+**Children (Georgii, Stanislav):**
+- Checked: Not included
+- Carry-on: 1 piece × 10 kg cabin each
+- **Total per child/infant: 10 kg cabin only**
 
-**Note:** This is a basic economy fare. Checked baggage can be purchased separately if needed.
+**Group total (per Turkish Airlines rep): 44 kg cabin**
+- 2 adults × 12 kg = 24 kg
+- 2 children × 10 kg = 20 kg
+- **Total: 44 kg cabin** (no checked baggage)
+
+**Note:** Basic economy fare. Checked baggage can be purchased separately if needed.
 
 ---
 
@@ -130,11 +161,11 @@ Here's what the family can bring on each flight segment:
 
 | Segment | Passengers | Checked Baggage | Cabin Baggage | Total Capacity |
 |---------|-----------|-----------------|---------------|----------------|
-| **CPH→IST→TBS**<br>Oct 17-18 | Miguel (1) | 23 kg | 12 kg | **35 kg** |
-| **KZN→TBS**<br>Oct 25 | Anastasia, Georgii,<br>Leonid, Stanislav (4) | 0 kg<br>(not included) | 25 kg<br>(3×5kg + 1×10kg) | **25 kg** |
-| **TBS→KZN**<br>Oct 25 | Leonid (1) | 0 kg<br>(not included) | 5 kg | **5 kg** |
-| **TBS→IST**<br>Nov 20 | Miguel, Anastasia,<br>Georgii, Stanislav (4) | ~69-92 kg<br>(3×23kg + infant) | 44 kg<br>(3×12kg + 1×8kg) | **~113-136 kg** |
-| **IST→EZE**<br>Nov 21 | Miguel, Anastasia,<br>Georgii, Stanislav (4) | 0 kg<br>(not included) | 48 kg<br>(4×12kg) | **48 kg** |
+| **CPH→IST→TBS**<br>Oct 17-18 | Miguel (1 adult) | 23 kg | 12 kg | **35 kg** |
+| **KZN→TBS**<br>Oct 25 | Anastasia, Leonid (adults)<br>Georgii (child), Stanislav (infant) | 0 kg<br>(not included) | 25 kg<br>(2×5kg + 1×5kg + 1×10kg) | **25 kg** |
+| **TBS→KZN**<br>Oct 25 | Leonid (1 adult) | 0 kg<br>(not included) | 5 kg | **5 kg** |
+| **TBS→IST**<br>Nov 20 | Miguel, Anastasia (adults)<br>Georgii (child), Stanislav (infant) | **70 kg adults**<br>(confirmed by TK)<br>+ child/infant allowance | 24 kg adults<br>+ child/infant cabin | **~94-104 kg**<br>(pending full details) |
+| **IST→EZE**<br>Nov 21 | Miguel, Anastasia (adults)<br>Georgii (child), Stanislav (infant) | 0 kg<br>(not included) | **44 kg total**<br>(2×12kg + 2×10kg)<br>(confirmed by TK) | **44 kg** |
 
 ---
 
@@ -145,13 +176,17 @@ Here's what the family can bring on each flight segment:
 When considering the complete journey from start to finish, here's your realistic baggage capacity:
 
 **The limiting factor is the Istanbul → Buenos Aires segment:**
-- Only **48 kg total** in cabin baggage for all 4 passengers
+- Only **44 kg total** in cabin baggage (confirmed by Turkish Airlines):
+  - 2 adults × 12 kg = 24 kg
+  - 2 children × 10 kg = 20 kg
 - No checked baggage included
 
 **Practical options:**
 
 1. **Travel light (cabin only):**
-   - Pack 48 kg total in cabin bags across all 4 passengers
+   - Pack 44 kg total in cabin bags:
+     - Adults (Miguel, Anastasia): 12 kg each = 24 kg
+     - Children (Georgii, Stanislav): 10 kg each = 20 kg
    - No additional fees
    - Simplest approach
 
@@ -287,10 +322,16 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 #### Flight 4: Tbilisi → Istanbul
 - **Reservation Code (PNR):** WGZEHM
 - **Ticket Numbers:** Not yet issued (booking confirmed)
-- **Passengers:** Miguel Lemos, Anastasiia Viazova, Georgii Viazov, Stanislav Viazova (infant)
+- **Passengers:**
+  - Adults: Miguel Lemos, Anastasiia Viazova
+  - Child: Georgii Viazov (3 years)
+  - Infant: Stanislav Viazov (1 year)
 - **Travel Date:** November 20, 2025
 - **Airline:** Turkish Airlines
 - **Route:** Tbilisi (TBS) → Istanbul (IST)
+- **Baggage (confirmed with Turkish Airlines):**
+  - Adults: 70 kg total (2 × 35 kg)
+  - Child & Infant: Additional allowance applies
 - **Pet:** Scooby Doo (Dog / Black and Tan Terrier, 15 kg, 46×35×24 cm) - **Confirmed, Fee: TRY 16,916**
 
 ---
@@ -298,13 +339,18 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 #### Flight 5: Istanbul → Buenos Aires
 - **Reservation Code (PNR):** TF3BSV
 - **Ticket Numbers:** Not yet issued (booking confirmed)
-- **Passengers:** Miguel Lemos, Anastasiia Viazova, Georgii Viazov, Stanislav Viazova (infant)
+- **Passengers:**
+  - Adults: Miguel Lemos, Anastasiia Viazova
+  - Child: Georgii Viazov (3 years)
+  - Infant: Stanislav Viazov (1 year)
 - **Travel Date:** November 21, 2025
 - **Airline:** Turkish Airlines
 - **Flight:** Istanbul (IST) → Buenos Aires (EZE)
 - **Fare Type:** Basic Economy
+- **Baggage (confirmed with Turkish Airlines):**
+  - Checked: NOT included (0 kg)
+  - Cabin: **44 kg total** (2 adults × 12 kg + 2 children × 10 kg)
 - **Pet:** Scooby Doo (Dog / Black and Tan Terrier, 15 kg, 45×30×25 cm) - **Confirmed, Fee: TRY 34,727.00**
-- **Important:** Basic Economy fare - checked baggage NOT included (0 kg). Cabin baggage: 4 passengers × 12 kg each = 48 kg total
 
 ---
 
@@ -313,14 +359,14 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 #### Flight 2: Kazan → Tbilisi
 - **Reservation Code:** B18565959305
 - **Ticket Numbers:**
-  - Anastasiia Viazova: 309-6126464288
-  - Georgii Viazov: 309-6126464289
-  - Leonid Viazov: 309-6126464287
-  - Stanislav Viazova (infant): 309-6126464290
+  - Anastasiia Viazova (adult): 309-6126464288
+  - Leonid Viazov (adult): 309-6126464287
+  - Georgii Viazov (child, 3 years): 309-6126464289
+  - Stanislav Viazov (infant, 1 year): 309-6126464290
 - **Travel Date:** October 25, 2025
 - **Flight:** WZ 1501, Kazan (KZN) → Tbilisi (TBS), 09:15 - 13:20
 - **Class:** Economy (FLTOW)
-- **Baggage:** Hand baggage only - 5 kg per adult, 10 kg for infant (40×30×20 cm)
+- **Baggage:** Hand baggage only - 5 kg per adult/child, 10 kg for infant (40×30×20 cm)
 
 ---
 
