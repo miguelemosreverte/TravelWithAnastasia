@@ -233,19 +233,21 @@ After calling Turkish Airlines customer service, we received confirmed baggage a
 
 ### Red Wings Upgrade Recommendation
 
-**Problem:** The Kazan→Tbilisi passengers (Anastasia, Georgii, Stanislav) need consistent cabin bags across all flights.
+**Passenger Clarification:**
+- **Kazan→Tbilisi:** 4 passengers (Leonid, Anastasia, Georgii, Stanislav)
+- **Leonid's situation:** Stays in Tbilisi, returns to Kazan one week later. His bag continues with the family to Buenos Aires.
+- **Turkish Airlines flights:** 4 passengers (Miguel, Anastasia, Georgii, Stanislav) + Leonid's bag
 
-**Current Red Wings allowance:**
+**Current Red Wings allowance (4 passengers from Kazan):**
+- Leonid: 5 kg cabin
 - Anastasia: 5 kg cabin
 - Georgii: 5 kg cabin
 - Stanislav: 10 kg cabin
-- **Total: 20 kg cabin**
+- **Total: 25 kg cabin**
 
-**Istanbul→Buenos Aires capacity for these 3 passengers:**
-- Anastasia: 12 kg
-- Georgii: 10 kg
-- Stanislav: 10 kg
-- **Total: 32 kg cabin**
+**Istanbul→Buenos Aires constraint:**
+- **Total cabin limit: 44 kg** for all 4 passengers
+- Bags from Kazan + Miguel's bags must fit within 44 kg
 
 **Optimal Solution: Upgrade hand baggage on Red Wings**
 
@@ -254,17 +256,24 @@ Select **"Aumento del equipaje de mano"** (10 kg upgrade) for:
 - ✅ Georgii (upgrade from 5 kg to 10 kg)
 
 **Result:**
-- Total cabin capacity: **30 kg consistently across all flights**
+- Bags from Kazan: **35 kg** (Leonid 5 kg + Anastasia 10 kg + Georgii 10 kg + Stanislav 10 kg)
+- Miguel's cabin allowance: **9 kg** (44 - 35 = 9 kg remaining)
 - Cost: ~3,000 ₽ (1,500 ₽ per passenger)
-- Within IST→EZE limit (32 kg for these 3)
-- Same physical bags throughout the journey (no repacking)
+- Same physical bags throughout (all 40×30×20 cm)
+
+**Alternative (if Miguel brings minimal cabin):**
+Upgrade all three adults (Leonid, Anastasia, Georgii) to 10 kg:
+- Bags from Kazan: **40 kg** (10+10+10+10)
+- Miguel's cabin allowance: **4 kg** (44 - 40 = 4 kg remaining)
+- Cost: ~4,500 ₽
+- Maximizes capacity from Kazan, but Miguel must travel very light in cabin
 
 **Why not checked baggage?**
 Checked baggage on Red Wings cannot be carried as cabin on Turkish Airlines flights. The upgrade option ensures consistent cabin bags throughout.
 
 ### Important: Bag Size Restrictions
 
-**Note for Kazan→Tbilisi flight:** 4 passengers travel on this segment (Leonid, Anastasia, Georgii, Stanislav). Only 3 continue to Turkish Airlines flights (Anastasia, Georgii, Stanislav) as Leonid returns to Kazan the same day.
+**Note:** 4 passengers travel Kazan→Tbilisi (Leonid, Anastasia, Georgii, Stanislav). Leonid stays in Tbilisi for one week, but his bag continues with the family to Buenos Aires.
 
 When using consistent cabin bags across all flights, the **size restrictions** are:
 
