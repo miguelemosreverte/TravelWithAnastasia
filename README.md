@@ -231,42 +231,50 @@ After calling Turkish Airlines customer service, we received confirmed baggage a
 - Breakdown: 2 adults × 12 kg + 2 children × 10 kg = 44 kg
 - No checked baggage included (Basic Economy)
 
-### Red Wings Upgrade Recommendation
+### 🎯 FINAL DEFINITIVE BAGGAGE PLAN
 
 **Passenger Clarification:**
 - **Kazan→Tbilisi:** 4 passengers (Leonid, Anastasia, Georgii, Stanislav)
 - **Leonid's situation:** Stays in Tbilisi, returns to Kazan one week later. His bag continues with the family to Buenos Aires.
 - **Turkish Airlines flights:** 4 passengers (Miguel, Anastasia, Georgii, Stanislav) + Leonid's bag
 
-**Current Red Wings allowance (4 passengers from Kazan):**
-- Leonid: 5 kg cabin
-- Anastasia: 5 kg cabin
-- Georgii: 5 kg cabin
-- Stanislav: 10 kg cabin
-- **Total: 25 kg cabin**
+---
 
-**Istanbul→Buenos Aires constraint:**
-- **Total cabin limit: 44 kg** for all 4 passengers
-- Bags from Kazan + Miguel's bags must fit within 44 kg
+### ✅ WHAT TO PURCHASE: Red Wings Baggage Upgrades
 
-**Optimal Solution: Upgrade hand baggage on Red Wings**
+**Purchase exactly 2 upgrades:**
 
 Select **"Aumento del equipaje de mano"** (10 kg upgrade) for:
-- ✅ Anastasia (upgrade from 5 kg to 10 kg)
-- ✅ Georgii (upgrade from 5 kg to 10 kg)
 
-**Result:**
-- Bags from Kazan: **35 kg** (Leonid 5 kg + Anastasia 10 kg + Georgii 10 kg + Stanislav 10 kg)
-- Miguel's cabin allowance: **9 kg** (44 - 35 = 9 kg remaining)
-- Cost: ~3,000 ₽ (1,500 ₽ per passenger)
-- Same physical bags throughout (all 40×30×20 cm)
+1. **Anastasia** - Upgrade from 5 kg to 10 kg
+2. **Georgii** - Upgrade from 5 kg to 10 kg
 
-**Alternative (if Miguel brings minimal cabin):**
-Upgrade all three adults (Leonid, Anastasia, Georgii) to 10 kg:
-- Bags from Kazan: **40 kg** (10+10+10+10)
-- Miguel's cabin allowance: **4 kg** (44 - 40 = 4 kg remaining)
-- Cost: ~4,500 ₽
-- Maximizes capacity from Kazan, but Miguel must travel very light in cabin
+**Do NOT upgrade:**
+- Stanislav (already has 10 kg as infant - no upgrade needed)
+- Leonid (stays at 5 kg - no upgrade needed)
+
+**Cost: ~3,000 ₽** (2 passengers × ~1,500 ₽ each)
+
+---
+
+### 📊 Final Baggage Distribution
+
+**Red Wings KZN→TBS (after upgrades):**
+- Leonid: 1 bag × 5 kg
+- Anastasia: 1 bag × 10 kg ✅
+- Georgii: 1 bag × 10 kg ✅
+- Stanislav: 1 bag × 10 kg
+- **Total: 4 bags, 35 kg**
+
+**Turkish Airlines TBS→IST and IST→EZE:**
+- Bags from Kazan: 35 kg (4 bags)
+- Miguel's bags: 9 kg
+- **Total: 44 kg** (exactly at limit ✅)
+
+**Physical management:**
+- Anastasia manages 3 bags: hers (10 kg) + Georgii's (10 kg) + Stanislav's (10 kg) = **30 kg total**
+- Each bag registered to its respective passenger at check-in
+- Each bag must be ≤55×40×25 cm
 
 **Why not checked baggage?**
 Checked baggage on Red Wings cannot be carried as cabin on Turkish Airlines flights. The upgrade option ensures consistent cabin bags throughout.
