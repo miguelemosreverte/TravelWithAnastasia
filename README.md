@@ -275,29 +275,31 @@ Checked baggage on Red Wings cannot be carried as cabin on Turkish Airlines flig
 
 **Note:** 4 passengers travel Kazan→Tbilisi (Leonid, Anastasia, Georgii, Stanislav). Leonid stays in Tbilisi for one week, but his bag continues with the family to Buenos Aires.
 
-When using consistent cabin bags across all flights, the **size restrictions** are:
+**Critical correction:** The Red Wings 10 kg upgrade ALSO increases size limits!
 
-**Red Wings (most restrictive):**
-- Maximum dimensions: **40×30×20 cm**
-- This is the limiting factor for consistent bags
+**Red Wings basic (5 kg):**
+- Maximum: 40×30×20 cm
+
+**Red Wings WITH 10 kg upgrade:**
+- Maximum: **55×40×25 cm** ✅
+- This matches standard cabin roller size!
 
 **Turkish Airlines:**
 - Carry-on: 55×40×23 cm
 - Personal item: 40×30×15 cm
 
-**What this means practically:**
+**With the 10 kg upgrade, size restrictions align:**
+
+✅ **Will work (with 10 kg upgrade):**
+- **Standard cabin-sized rollers** up to 55×40×25 cm
+- **Backpacks** within dimensions
+- **Soft duffel bags**
 
 ❌ **Will NOT work:**
-- Standard roller suitcases (typically 55-80 cm height)
-- Typical cabin-sized rollers (55×40×23 cm - too large for Red Wings)
+- **58 cm suitcase** (like the ABS plastic suitcase mentioned) - exceeds 55 cm limit by 3 cm
+- Large roller suitcases (70-80 cm height)
 
-✅ **Will work:**
-- **Backpacks** within 40×30×20 cm dimensions
-- **Soft duffel bags** that compress to fit
-- **Small wheeled bags** specifically at 40×30×20 cm (uncommon but available)
-- Laptop-sized backpacks or under-seat bags
-
-**The 10 kg weight upgrade helps with capacity, but the size remains limited to 40×30×20 cm on Red Wings flights.**
+**Important:** The 58 cm ABS plastic suitcase (55L) that Anastasia wants to bring is **too large** for Red Wings even with the upgrade. Maximum is 55 cm on longest dimension.
 
 ![Red Wings Baggage Upgrade Options](red-wings-baggage-upgrade-menu.png)
 
