@@ -216,6 +216,56 @@ For the Red Wings segments, you'll need smaller, softer bags. For Turkish Airlin
 
 ---
 
+## Baggage Optimization Strategy
+
+### Turkish Airlines Call Confirmation (October 8, 2025)
+
+After calling Turkish Airlines customer service, we received confirmed baggage allowances that differ from the initial documentation:
+
+**Flight 4 (TBS→IST) - Confirmed:**
+- Adults (Miguel, Anastasia): **70 kg total** (2 × 35 kg each)
+- Child and infant allowances apply additionally
+
+**Flight 5 (IST→EZE) - Confirmed:**
+- **Total cabin: 44 kg** (not 48 kg as initially documented)
+- Breakdown: 2 adults × 12 kg + 2 children × 10 kg = 44 kg
+- No checked baggage included (Basic Economy)
+
+### Red Wings Upgrade Recommendation
+
+**Problem:** The Kazan→Tbilisi passengers (Anastasia, Georgii, Stanislav) need consistent cabin bags across all flights.
+
+**Current Red Wings allowance:**
+- Anastasia: 5 kg cabin
+- Georgii: 5 kg cabin
+- Stanislav: 10 kg cabin
+- **Total: 20 kg cabin**
+
+**Istanbul→Buenos Aires capacity for these 3 passengers:**
+- Anastasia: 12 kg
+- Georgii: 10 kg
+- Stanislav: 10 kg
+- **Total: 32 kg cabin**
+
+**Optimal Solution: Upgrade hand baggage on Red Wings**
+
+Select **"Aumento del equipaje de mano"** (10 kg upgrade) for:
+- ✅ Anastasia (upgrade from 5 kg to 10 kg)
+- ✅ Georgii (upgrade from 5 kg to 10 kg)
+
+**Result:**
+- Total cabin capacity: **30 kg consistently across all flights**
+- Cost: ~3,000 ₽ (1,500 ₽ per passenger)
+- Within IST→EZE limit (32 kg for these 3)
+- Same physical bags throughout the journey (no repacking)
+
+**Why not checked baggage?**
+Checked baggage on Red Wings cannot be carried as cabin on Turkish Airlines flights. The upgrade option ensures consistent cabin bags throughout.
+
+![Red Wings Baggage Upgrade Options](red-wings-baggage-upgrade-menu.png)
+
+---
+
 ## Pet Travel: Scooby Doo's Journey
 
 ### Can Scooby Doo travel from Copenhagen to Buenos Aires?
