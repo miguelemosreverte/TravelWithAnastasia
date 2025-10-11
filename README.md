@@ -39,14 +39,14 @@
 
 ---
 
-### 2. October 25, 2025: Kazan → Tbilisi
+### 2. October 18, 2025: Kazan → Tbilisi
 **Passengers:**
 - **Adults:** Anastasia Viazova, Leonid Viazov (2)
 - **Child:** Georgii Viazov (3 years old)
 - **Infant:** Stanislav Viazov (1 year old)
 
 **Flight:** WZ 1501 - Kazan (KZN) → Tbilisi (TBS)
-- Oct 25, 09:15 → Oct 25, 13:20
+- Oct 18, 09:15 → Oct 18, 13:20
 
 **Airline:** Red Wings
 **Class:** Economy (FLTOW)
@@ -456,11 +456,11 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 #### Flight 2: Kazan → Tbilisi
 - **Reservation Code:** B18565959305
 - **Ticket Numbers:**
-  - Anastasiia Viazova (adult): 309-6126464288
-  - Leonid Viazov (adult): 309-6126464287
-  - Georgii Viazov (child, 3 years): 309-6126464289
-  - Stanislav Viazov (infant, 1 year): 309-6126464290
-- **Travel Date:** October 25, 2025
+  - Anastasiia Viazova (adult): 309-6127188873
+  - Leonid Viazov (adult): 309-6127188872
+  - Georgii Viazov (child, 3 years): 309-6127188874
+  - Stanislav Viazov (infant, 1 year): 309-6127188875
+- **Travel Date:** October 18, 2025
 - **Flight:** WZ 1501, Kazan (KZN) → Tbilisi (TBS), 09:15 - 13:20
 - **Class:** Economy (FLTOW)
 - **Baggage:** Hand baggage only - 5 kg per adult/child, 10 kg for infant (40×30×20 cm)
@@ -485,7 +485,7 @@ Use this information when calling Turkish Airlines about baggage allowances, pet
 - TF3BSV (4 passengers, Nov 21, IST→EZE)
 
 **Red Wings Reservation:**
-- B18565959305 (4 passengers, Oct 25, KZN→TBS)
+- B18565959305 (4 passengers, Oct 18, KZN→TBS)
 - Leonid return (Oct 25, TBS→KZN) - Check ticket for reservation code
 
 **Pet Travel (Turkish Airlines only):**
