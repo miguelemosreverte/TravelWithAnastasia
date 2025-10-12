@@ -325,19 +325,25 @@
                 opacity: 0.2;
             }
 
+            #book-container {
+                /* Ensure container doesn't restrict dimensions */
+                overflow: visible;
+            }
+
             #book {
                 /* Rotate 90 degrees and swap dimensions */
                 transform: rotate(90deg);
                 transform-origin: center center;
-                /* Swap width/height because of rotation */
-                width: 98vh;
-                height: 98vw;
+                /* Use full available space - swap width/height because of rotation */
+                width: 100vh;
+                height: 100vw;
                 max-width: none;
+                max-height: none;
                 box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             }
 
             .book-page {
-                padding: 0.75rem;
+                padding: 0.5rem;
             }
 
             /* Adjust hero map in first page */
@@ -421,7 +427,7 @@
                         </div>
                         <div class="page-footer">
                             <span class="desktop-hint">Use ← → arrow keys to navigate</span>
-                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe up or down to navigate</span>
                         </div>
                     </div>
                     <div class="book-page right" id="page-1-right">
@@ -480,7 +486,7 @@
                         </div>
                         <div class="page-footer">
                             <span class="desktop-hint">Use ← → arrow keys to navigate</span>
-                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe up or down to navigate</span>
                         </div>
                     </div>
                 </div>
@@ -557,7 +563,7 @@
                         </div>
                         <div class="page-footer">
                             <span class="desktop-hint">Use ← → arrow keys to navigate</span>
-                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe up or down to navigate</span>
                         </div>
                     </div>
                     <div class="book-page right" id="page-2-right">
@@ -598,7 +604,7 @@
                         </div>
                         <div class="page-footer">
                             <span class="desktop-hint">Use ← → arrow keys to navigate</span>
-                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe up or down to navigate</span>
                         </div>
                     </div>
                 </div>
@@ -630,7 +636,7 @@
                         </div>
                         <div class="page-footer">
                             <span class="desktop-hint">Use ← → arrow keys to navigate</span>
-                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe up or down to navigate</span>
                         </div>
                     </div>
                     <div class="book-page right" id="page-3-right">
@@ -690,7 +696,7 @@
                         </div>
                         <div class="page-footer">
                             <span class="desktop-hint">Use ← → arrow keys to navigate</span>
-                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe up or down to navigate</span>
                         </div>
                     </div>
                 </div>
@@ -716,8 +722,12 @@
             zoomControl: false,
             attributionControl: false,
             scrollWheelZoom: false,
-            dragging: true,
-            doubleClickZoom: false
+            dragging: false,
+            doubleClickZoom: false,
+            touchZoom: false,
+            boxZoom: false,
+            keyboard: false,
+            tap: false
         }).setView([40, 20], 3);
 
         // Add OpenStreetMap tiles to hero map
@@ -889,24 +899,43 @@
         // Touch/swipe gestures for pages
         let pageStartX = 0;
         let pageEndX = 0;
+        let pageStartY = 0;
+        let pageEndY = 0;
 
         document.getElementById('book').addEventListener('touchstart', (e) => {
             pageStartX = e.changedTouches[0].screenX;
+            pageStartY = e.changedTouches[0].screenY;
         });
 
         document.getElementById('book').addEventListener('touchend', (e) => {
             pageEndX = e.changedTouches[0].screenX;
+            pageEndY = e.changedTouches[0].screenY;
             handlePageSwipe();
         });
 
         function handlePageSwipe() {
-            // Swipe left (right to left) - next page
-            if (pageEndX < pageStartX - 50) {
-                nextPage();
-            }
-            // Swipe right (left to right) - previous page
-            else if (pageEndX > pageStartX + 50) {
-                previousPage();
+            const isMobileRotated = isMobileDevice();
+
+            if (isMobileRotated) {
+                // On mobile (rotated 90deg), use vertical swipes
+                // Swipe up (down to up) - next page
+                if (pageEndY < pageStartY - 50) {
+                    nextPage();
+                }
+                // Swipe down (up to down) - previous page
+                else if (pageEndY > pageStartY + 50) {
+                    previousPage();
+                }
+            } else {
+                // On desktop, use horizontal swipes
+                // Swipe left (right to left) - next page
+                if (pageEndX < pageStartX - 50) {
+                    nextPage();
+                }
+                // Swipe right (left to right) - previous page
+                else if (pageEndX > pageStartX + 50) {
+                    previousPage();
+                }
             }
         }
 
