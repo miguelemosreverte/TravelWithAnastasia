@@ -334,12 +334,12 @@
                 /* Rotate 90 degrees and swap dimensions */
                 transform: rotate(90deg);
                 transform-origin: center center;
-                /* Use full available space - swap width/height because of rotation */
-                width: 100vh;
-                height: 100vw;
+                /* Use 80% of space for 10% margins on all sides - swap width/height because of rotation */
+                width: 80vh;
+                height: 80vw;
                 max-width: none;
                 max-height: none;
-                box-shadow: none;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.15);
             }
 
             .book-page {
