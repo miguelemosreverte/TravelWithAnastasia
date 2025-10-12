@@ -579,6 +579,27 @@
             { name: 'Buenos Aires', coords: [-34.6037, -58.3816], color: '#f59e0b' }
         ];
 
+        // Draw flight path lines (great circles) on cover map
+        const coverFlightPaths = [
+            { from: 0, to: 2, color: '#3b82f6' },  // Copenhagen → Tbilisi
+            { from: 1, to: 2, color: '#8b5cf6' },  // Kazan → Tbilisi
+            { from: 2, to: 3, color: '#06b6d4' },  // Tbilisi → Istanbul
+            { from: 3, to: 4, color: '#10b981' }   // Istanbul → Buenos Aires
+        ];
+
+        coverFlightPaths.forEach(path => {
+            L.polyline([
+                coverJourneyPoints[path.from].coords,
+                coverJourneyPoints[path.to].coords
+            ], {
+                color: path.color,
+                weight: 2,
+                opacity: 0.7,
+                dashArray: '5, 5',
+                className: 'great-circle-path'
+            }).addTo(coverMap);
+        });
+
         coverJourneyPoints.forEach(point => {
             L.circleMarker(point.coords, {
                 radius: 6,
