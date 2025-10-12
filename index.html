@@ -19,7 +19,7 @@
             position: relative;
         }
 
-        /* Halftone effect on ink/content - dense white dots breaking up the ink */
+        /* Halftone effect on ink/content - balanced printing dots */
         body::before {
             content: '';
             position: fixed;
@@ -28,12 +28,12 @@
             right: 0;
             bottom: 0;
             background-image:
-                radial-gradient(circle, rgba(255,255,255,0.75) 0.5px, transparent 0.5px);
-            background-size: 1px 1px;
+                radial-gradient(circle, rgba(255,255,255,0.35) 0.4px, transparent 0.4px);
+            background-size: 1.5px 1.5px;
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: screen;
-            opacity: 1;
+            opacity: 0.8;
         }
 
         /* Scrolling map background container */
