@@ -19,6 +19,58 @@
             position: relative;
         }
 
+        /* Book cover and page-turn effect */
+        #book-cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(254, 254, 250, 1) 0%, rgba(252, 252, 248, 1) 100%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-origin: left center;
+            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+        }
+
+        #book-cover.open {
+            transform: perspective(2000px) rotateY(-160deg);
+            pointer-events: none;
+        }
+
+        .cover-content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .open-book-hint {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            animation: pulse 2s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(10px); }
+        }
+
+        .page-content {
+            opacity: 0;
+            transition: opacity 0.6s ease 1s;
+        }
+
+        .page-content.visible {
+            opacity: 1;
+        }
+
         /* Halftone effect on ink/content - balanced printing dots */
         body::before {
             content: '';
@@ -202,8 +254,26 @@
     </style>
 </head>
 <body>
+    <!-- Book Cover -->
+    <div id="book-cover">
+        <div class="cover-content">
+            <h1 class="text-5xl sm:text-7xl font-bold mb-6" style="color: #1e293b; font-family: Georgia, serif;">Family Travel Journey</h1>
+            <p class="text-2xl mb-4" style="color: #64748b;">Copenhagen → Tbilisi → Istanbul → Buenos Aires</p>
+            <p class="text-xl mb-8" style="color: #94a3b8;">October - November 2025</p>
+            <div style="max-width: 600px; height: 300px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div id="cover-map" style="width: 100%; height: 100%;"></div>
+            </div>
+        </div>
+        <div class="open-book-hint" onclick="openBook()">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6" stroke="#3b82f6"/>
+            </svg>
+            <p style="text-align: center; margin-top: 8px; font-size: 14px; color: #3b82f6;">Swipe to open</p>
+        </div>
+    </div>
+
     <!-- Scrolling background wrapper -->
-    <div id="content-wrapper">
+    <div id="content-wrapper" class="page-content">
         <!-- Scrolling map background -->
         <div id="scrolling-background">
             <div id="scrolling-map-tiles"></div>
@@ -485,6 +555,76 @@
     </div>
 
     <script>
+        // Initialize cover map (shown on book cover)
+        const coverMap = L.map('cover-map', {
+            zoomControl: false,
+            attributionControl: false,
+            scrollWheelZoom: false,
+            dragging: false,
+            doubleClickZoom: false,
+            touchZoom: false
+        }).setView([40, 20], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '',
+            opacity: 1
+        }).addTo(coverMap);
+
+        // Add simplified journey markers to cover map
+        const coverJourneyPoints = [
+            { name: 'Copenhagen', coords: [55.6761, 12.5683], color: '#3b82f6' },
+            { name: 'Kazan', coords: [55.8304, 49.0661], color: '#8b5cf6' },
+            { name: 'Tbilisi', coords: [41.7151, 44.8271], color: '#06b6d4' },
+            { name: 'Istanbul', coords: [41.0082, 28.9784], color: '#10b981' },
+            { name: 'Buenos Aires', coords: [-34.6037, -58.3816], color: '#f59e0b' }
+        ];
+
+        coverJourneyPoints.forEach(point => {
+            L.circleMarker(point.coords, {
+                radius: 6,
+                fillColor: point.color,
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.9
+            }).addTo(coverMap);
+        });
+
+        const coverBounds = L.latLngBounds(coverJourneyPoints.map(p => p.coords));
+        coverMap.fitBounds(coverBounds, { padding: [30, 30] });
+
+        // Open book function
+        function openBook() {
+            const bookCover = document.getElementById('book-cover');
+            const pageContent = document.querySelector('.page-content');
+
+            bookCover.classList.add('open');
+
+            // Show content after animation starts
+            setTimeout(() => {
+                pageContent.classList.add('visible');
+            }, 400);
+        }
+
+        // Swipe detection for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('book-cover').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('book-cover').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX > touchStartX + 50) {
+                openBook();
+            }
+        }
+
         // Initialize hero map
         const heroMap = L.map('hero-map', {
             zoomControl: false,
