@@ -19,7 +19,7 @@
             position: relative;
         }
 
-        /* Global halftone overlay for entire page */
+        /* Halftone effect on ink/content - very subtle dots */
         body::before {
             content: '';
             position: fixed;
@@ -28,12 +28,12 @@
             right: 0;
             bottom: 0;
             background-image:
-                radial-gradient(circle, rgba(0,0,0,0.12) 0.7px, transparent 0.7px);
-            background-size: 3px 3px;
+                radial-gradient(circle, rgba(255,255,255,0.25) 0.25px, transparent 0.25px);
+            background-size: 1.2px 1.2px;
             pointer-events: none;
             z-index: 9999;
-            mix-blend-mode: multiply;
-            opacity: 0.5;
+            mix-blend-mode: screen;
+            opacity: 0.6;
         }
 
         /* Scrolling map background container */
@@ -84,7 +84,7 @@
             z-index: 2;
         }
 
-        /* Paper-on-table aesthetic */
+        /* Paper-on-table aesthetic - clean paper, no dots */
         .content-section {
             background: linear-gradient(135deg,
                 rgba(254, 254, 250, 0.98) 0%,
@@ -94,25 +94,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
             position: relative;
             border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        /* Halftone printing dot pattern - everything is made of dots */
-        .content-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image:
-                radial-gradient(circle, rgba(0,0,0,0.15) 0.8px, transparent 0.8px),
-                radial-gradient(circle, rgba(0,0,0,0.08) 0.6px, transparent 0.6px);
-            background-size: 4px 4px, 2px 2px;
-            background-position: 0 0, 2px 2px;
-            pointer-events: none;
-            border-radius: 2px;
-            opacity: 0.6;
-            mix-blend-mode: multiply;
         }
 
         /* Slight rotation variations for each section */
