@@ -63,12 +63,9 @@
         }
 
         .page-content {
-            opacity: 0;
-            transition: opacity 0.6s ease 1s;
-        }
-
-        .page-content.visible {
             opacity: 1;
+            position: relative;
+            z-index: 1;
         }
 
         /* Halftone effect on ink/content - balanced printing dots */
@@ -268,7 +265,7 @@
             <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 18l6-6-6-6" stroke="#3b82f6"/>
             </svg>
-            <p style="text-align: center; margin-top: 8px; font-size: 14px; color: #3b82f6;">Swipe to open</p>
+            <p id="open-hint-text" style="text-align: center; margin-top: 8px; font-size: 14px; color: #3b82f6;">Click to open</p>
         </div>
     </div>
 
@@ -579,6 +576,33 @@
             { name: 'Buenos Aires', coords: [-34.6037, -58.3816], color: '#f59e0b' }
         ];
 
+        // Function to create great circle arc points
+        function createGreatCircle(start, end, numPoints = 50) {
+            const latlngs = [];
+            const lat1 = start[0] * Math.PI / 180;
+            const lon1 = start[1] * Math.PI / 180;
+            const lat2 = end[0] * Math.PI / 180;
+            const lon2 = end[1] * Math.PI / 180;
+
+            for (let i = 0; i <= numPoints; i++) {
+                const fraction = i / numPoints;
+
+                // Great circle interpolation
+                const A = Math.sin((1 - fraction) * 1) / Math.sin(1);
+                const B = Math.sin(fraction * 1) / Math.sin(1);
+
+                const x = A * Math.cos(lat1) * Math.cos(lon1) + B * Math.cos(lat2) * Math.cos(lon2);
+                const y = A * Math.cos(lat1) * Math.sin(lon1) + B * Math.cos(lat2) * Math.sin(lon2);
+                const z = A * Math.sin(lat1) + B * Math.sin(lat2);
+
+                const lat = Math.atan2(z, Math.sqrt(x * x + y * y)) * 180 / Math.PI;
+                const lon = Math.atan2(y, x) * 180 / Math.PI;
+
+                latlngs.push([lat, lon]);
+            }
+            return latlngs;
+        }
+
         // Draw flight path lines (great circles) on cover map
         const coverFlightPaths = [
             { from: 0, to: 2, color: '#3b82f6' },  // Copenhagen → Tbilisi
@@ -588,15 +612,16 @@
         ];
 
         coverFlightPaths.forEach(path => {
-            L.polyline([
+            const arcPoints = createGreatCircle(
                 coverJourneyPoints[path.from].coords,
                 coverJourneyPoints[path.to].coords
-            ], {
+            );
+
+            L.polyline(arcPoints, {
                 color: path.color,
                 weight: 2,
                 opacity: 0.7,
-                dashArray: '5, 5',
-                className: 'great-circle-path'
+                dashArray: '5, 5'
             }).addTo(coverMap);
         });
 
@@ -614,17 +639,22 @@
         const coverBounds = L.latLngBounds(coverJourneyPoints.map(p => p.coords));
         coverMap.fitBounds(coverBounds, { padding: [30, 30] });
 
+        // Detect mobile vs desktop and update hint text
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                   window.innerWidth < 768;
+        }
+
+        if (isMobileDevice()) {
+            document.getElementById('open-hint-text').textContent = 'Swipe left to open';
+        } else {
+            document.getElementById('open-hint-text').textContent = 'Click to open';
+        }
+
         // Open book function
         function openBook() {
             const bookCover = document.getElementById('book-cover');
-            const pageContent = document.querySelector('.page-content');
-
             bookCover.classList.add('open');
-
-            // Show content after animation starts
-            setTimeout(() => {
-                pageContent.classList.add('visible');
-            }, 400);
         }
 
         // Swipe detection for mobile
@@ -641,7 +671,8 @@
         });
 
         function handleSwipe() {
-            if (touchEndX > touchStartX + 50) {
+            // Swipe left (right to left) - touchEnd is less than touchStart
+            if (touchEndX < touchStartX - 50) {
                 openBook();
             }
         }
