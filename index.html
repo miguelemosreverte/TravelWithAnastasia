@@ -31,6 +31,7 @@
             align-items: center;
             justify-content: center;
             perspective: 2000px;
+            z-index: 10;
         }
 
         #book {
@@ -81,6 +82,23 @@
         .book-page.right {
             border-left: none;
             box-shadow: inset 30px 0 30px -30px rgba(0,0,0,0.2);
+        }
+
+        /* Footer instructions */
+        .page-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.75rem 1.5rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-style: italic;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            background: linear-gradient(to top,
+                rgba(254, 254, 250, 0.95) 0%,
+                rgba(254, 254, 250, 0.7) 100%);
         }
 
 
@@ -138,18 +156,18 @@
 
         /* Scrolling map background container */
         #scrolling-background {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.25;
+            opacity: 0.3;
         }
 
         #scrolling-map-tiles {
             width: 100%;
-            min-height: 5000px;
+            height: 100%;
             background-repeat: no-repeat;
             filter: blur(0.5px);
             background-size: auto;
@@ -321,6 +339,10 @@
                             <p class="text-lg" style="color: #64748b;">Copenhagen → Tbilisi → Istanbul → Buenos Aires</p>
                             <p class="text-sm" style="color: #94a3b8;">October - November 2025</p>
                         </div>
+                        <div class="page-footer">
+                            <span class="desktop-hint">Use ← → arrow keys to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                        </div>
                     </div>
                     <div class="book-page right" id="page-1-right">
                         <h2 class="section-title text-3xl mb-6 pb-4 border-b-2 border-blue-200">📍 Journey Itinerary</h2>
@@ -375,6 +397,10 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="page-footer">
+                            <span class="desktop-hint">Use ← → arrow keys to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
                         </div>
                     </div>
                 </div>
@@ -449,6 +475,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="page-footer">
+                            <span class="desktop-hint">Use ← → arrow keys to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                        </div>
                     </div>
                     <div class="book-page right" id="page-2-right">
                         <h2 class="section-title text-2xl mb-4 pb-3 border-b-2 border-blue-200">🧳 Baggage Summary</h2>
@@ -486,6 +516,10 @@
                                 <p class="text-xs">Red Wings cabin bags must fit 40×30×20 cm size restriction. Consider soft bags, backpacks, or compression bags for this segment.</p>
                             </div>
                         </div>
+                        <div class="page-footer">
+                            <span class="desktop-hint">Use ← → arrow keys to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                        </div>
                     </div>
                 </div>
 
@@ -513,6 +547,10 @@
                                 <p class="font-semibold text-sm">Flight 5: Istanbul → Buenos Aires</p>
                                 <p class="text-xs text-gray-600">Confirmed - Fee: TRY 34,727</p>
                             </div>
+                        </div>
+                        <div class="page-footer">
+                            <span class="desktop-hint">Use ← → arrow keys to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
                         </div>
                     </div>
                     <div class="book-page right" id="page-3-right">
@@ -570,6 +608,10 @@
                         <div class="mt-6 text-center text-xs text-gray-600 border-t pt-3">
                             <p>Have a wonderful journey! 🌍✈️</p>
                         </div>
+                        <div class="page-footer">
+                            <span class="desktop-hint">Use ← → arrow keys to navigate</span>
+                            <span class="mobile-hint" style="display: none;">Swipe left or right to navigate</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -578,6 +620,17 @@
     </div>
 
     <script>
+        // Detect device and show appropriate navigation hint
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                   window.innerWidth < 768;
+        }
+
+        if (isMobileDevice()) {
+            document.querySelectorAll('.desktop-hint').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.mobile-hint').forEach(el => el.style.display = 'inline');
+        }
+
         // Initialize hero map
         const heroMap = L.map('hero-map', {
             zoomControl: false,
@@ -645,19 +698,17 @@
         // Generate scrolling background tiles for Yoshkar-Ola and Cheboksary region
         function generateScrollingMapTiles() {
             const scrollingTilesDiv = document.getElementById('scrolling-map-tiles');
-            const contentDiv = document.getElementById('content');
             const zoom = 10;
 
-            // Get the actual content height to match tile coverage
-            const contentHeight = contentDiv.offsetHeight;
+            // Get viewport dimensions
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
 
             // Area covering Yoshkar-Ola (56.6312°N, 47.8744°E) to Cheboksary (56.1439°N, 47.2489°E)
-            // At zoom 10, we need more tiles
-            // Calculate tiles needed based on screen width and content height
+            // Calculate tiles needed based on viewport
             const tileSize = 256;
-            const screenWidth = window.innerWidth;
-            const tilesWide = Math.ceil(screenWidth / tileSize) + 2; // Extra tiles for coverage
-            const tilesHigh = Math.ceil(contentHeight / tileSize) + 1;
+            const tilesWide = Math.ceil(viewportWidth / tileSize) + 2; // Extra tiles for coverage
+            const tilesHigh = Math.ceil(viewportHeight / tileSize) + 2;
 
             // Starting tile coordinates at zoom 10 for Yoshkar-Ola/Cheboksary area
             const startX = 616; // X coordinate at zoom 10
@@ -685,7 +736,6 @@
             scrollingTilesDiv.style.backgroundImage = backgroundImages.join(', ');
             scrollingTilesDiv.style.backgroundPosition = backgroundPositions.join(', ');
             scrollingTilesDiv.style.backgroundSize = `${tileSize}px ${tileSize}px`;
-            scrollingTilesDiv.style.minHeight = `${contentHeight}px`;
         }
 
         // Initialize scrolling map tiles after content loads
