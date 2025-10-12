@@ -19,7 +19,7 @@
             position: relative;
         }
 
-        /* Halftone effect on ink/content - white dots breaking up the ink */
+        /* Halftone effect on ink/content - dense white dots breaking up the ink */
         body::before {
             content: '';
             position: fixed;
@@ -28,8 +28,8 @@
             right: 0;
             bottom: 0;
             background-image:
-                radial-gradient(circle, rgba(255,255,255,0.7) 0.6px, transparent 0.6px);
-            background-size: 2.5px 2.5px;
+                radial-gradient(circle, rgba(255,255,255,0.75) 0.5px, transparent 0.5px);
+            background-size: 1px 1px;
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: screen;
