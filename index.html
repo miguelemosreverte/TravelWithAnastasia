@@ -3,470 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Travel Itinerary - October-November 2025</title>
+    <title>Family Travel Journey - October-November 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Leaflet CSS for OpenStreetMap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <style>
-        /* Wall Street Journal inspired styling */
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-        .wsj-headline {
+
+        /* Map background - fixed position */
+        #map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Content overlay */
+        #content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Relaxing, semi-transparent containers */
+        .content-section {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .content-section:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Collapsible sections */
+        .collapsible-header {
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-header:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .collapsible-content.active {
+            max-height: 5000px;
+        }
+
+        .chevron {
+            transition: transform 0.3s ease;
+        }
+
+        .chevron.rotate {
+            transform: rotate(180deg);
+        }
+
+        /* Relaxing color palette */
+        .flight-card {
+            background: linear-gradient(135deg, rgba(147, 197, 253, 0.1) 0%, rgba(196, 181, 253, 0.1) 100%);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Typography */
+        .journey-headline {
             font-family: 'Georgia', serif;
             font-weight: 700;
             letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .wsj-subhead {
+
+        .section-title {
             font-family: 'Georgia', serif;
-            font-weight: 400;
-            letter-spacing: 0.01em;
+            font-weight: 600;
+            color: #1e293b;
         }
-        .wsj-body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
+
+        /* Smooth animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .wsj-mono {
-            font-family: 'Courier New', monospace;
-            font-size: 0.85em;
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
         }
-        .timeline-dot {
-            width: 16px;
-            height: 16px;
-            background: #000;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            box-shadow: 0 0 0 2px #000;
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        .pdf-link {
-            color: #2563eb;
-            text-decoration: underline;
-            cursor: pointer;
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
         }
-        .pdf-link:hover {
-            color: #1d4ed8;
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 5px;
         }
-        .stat-box {
-            border-left: 3px solid #000;
-        }
-        .info-highlight {
-            background-color: #f3f4f6;
-            border-left: 3px solid #6b7280;
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+<body>
+    <!-- OpenStreetMap Background -->
+    <div id="map"></div>
+
+    <!-- Content Overlay -->
+    <div id="content" class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
 
         <!-- Header -->
-        <header class="border-b-4 border-black pb-6 mb-8">
-            <h1 class="wsj-headline text-4xl sm:text-5xl mb-3">Family Travel Itinerary</h1>
-            <p class="wsj-subhead text-xl text-gray-600">October - November 2025 • Copenhagen to Buenos Aires</p>
-            <div class="mt-4 flex flex-wrap gap-4 text-sm text-gray-500">
-                <span>Adults: Miguel, Anastasia, Leonid</span>
-                <span>•</span>
-                <span>Child: Georgii (3yr)</span>
-                <span>•</span>
-                <span>Infant: Stanislav (1yr)</span>
-                <span>•</span>
-                <span>Pet: Scooby Doo</span>
+        <header class="content-section p-8 mb-8 fade-in">
+            <h1 class="journey-headline text-4xl sm:text-6xl mb-4">Family Travel Journey</h1>
+            <p class="text-2xl text-gray-600 mb-4">Copenhagen → Tbilisi → Istanbul → Buenos Aires</p>
+            <p class="text-lg text-gray-500">October - November 2025</p>
+            <div class="mt-6 flex flex-wrap gap-3 text-sm">
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">👨‍👩‍👧‍👦 5 Travelers</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full">🐕 1 Pet</span>
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full">✈️ 5 Flights</span>
+                <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full">🧳 Baggage Optimized</span>
             </div>
         </header>
 
-        <!-- Summary Stats -->
-        <div class="mb-12">
-            <h2 class="wsj-headline text-2xl mb-4">Journey Overview</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="stat-box pl-4 py-2">
-                    <div class="text-3xl font-bold">5</div>
-                    <div class="text-sm text-gray-600">Flight Segments</div>
-                </div>
-                <div class="stat-box pl-4 py-2">
-                    <div class="text-3xl font-bold">Oct 17</div>
-                    <div class="text-sm text-gray-600">Departure Date</div>
-                </div>
-                <div class="stat-box pl-4 py-2">
-                    <div class="text-3xl font-bold">Nov 21</div>
-                    <div class="text-sm text-gray-600">Final Destination</div>
-                </div>
-            </div>
-        </div>
+        <!-- Main Itinerary - Always Visible -->
+        <section class="content-section p-8 mb-8 fade-in" style="animation-delay: 0.1s">
+            <h2 class="section-title text-3xl mb-6 pb-4 border-b-2 border-blue-200">📍 Step-by-Step Journey</h2>
 
-        <!-- Flight 1: Copenhagen to Tbilisi -->
-        <section class="mb-8 bg-white shadow-sm border border-gray-200">
-            <div class="border-l-4 border-black p-6">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="timeline-dot"></div>
-                    <div>
-                        <h3 class="wsj-headline text-2xl">1. Copenhagen → Tbilisi</h3>
-                        <p class="text-sm text-gray-600">October 17-18, 2025</p>
-                    </div>
-                </div>
+            <!-- Flight 1: Miguel Copenhagen → Tbilisi -->
+            <div class="flight-card p-6 mb-6 rounded-lg">
+                <div class="flex items-start gap-4">
+                    <div class="timeline-dot mt-1"></div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">1. Copenhagen → Tbilisi</h3>
+                        <p class="text-sm text-gray-600 mb-3">October 17-18, 2025</p>
 
-                <div class="grid md:grid-cols-2 gap-6 mt-4">
-                    <div class="wsj-body">
-                        <h4 class="font-bold mb-2">Flight Details</h4>
-                        <div class="space-y-1 text-sm">
-                            <p><strong>Passenger:</strong> Miguel Lemos + Scooby Doo (pet)</p>
-                            <p><strong>Airline:</strong> Turkish Airlines</p>
-                            <div class="mt-2 space-y-1">
-                                <p class="wsj-mono">TK 1786: Oct 17, 19:20 → Oct 17, 23:40 (IST)</p>
-                                <p class="wsj-mono">TK 0376: Oct 18, 02:10 → Oct 18, 05:30 (TBS)</p>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <a href="#" class="pdf-link text-xs" onclick="openPDF('Miguel Copenhagen - Tblisi.pdf')">📄 View E-Ticket PDF</a>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-4 rounded">
-                        <h4 class="font-bold mb-3 text-sm">Baggage per Passenger</h4>
-                        <table class="w-full text-sm">
-                            <tr class="border-b">
-                                <td class="py-2">Checked</td>
-                                <td class="py-2 text-right">1 pc × 23 kg</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-2">Carry-on</td>
-                                <td class="py-2 text-right">1 pc × 8 kg</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-2">Personal item</td>
-                                <td class="py-2 text-right">1 pc × 4 kg</td>
-                            </tr>
-                            <tr class="bg-gray-100">
-                                <td class="py-2 font-bold">Total per person</td>
-                                <td class="py-2 text-right font-bold">35 kg</td>
-                            </tr>
-                        </table>
-                        <p class="text-xs text-gray-600 mt-3">Miguel's total: 35 kg</p>
-                        <p class="text-xs text-gray-600">Pet fee: DKK 2,665</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Flight 2: Kazan to Tbilisi -->
-        <section class="mb-8 bg-white shadow-sm border border-gray-200">
-            <div class="border-l-4 border-gray-600 p-6">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="timeline-dot" style="background: #4b5563;"></div>
-                    <div>
-                        <h3 class="wsj-headline text-2xl">2. Kazan → Tbilisi</h3>
-                        <p class="text-sm text-gray-600">October 18, 2025</p>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6 mt-4">
-                    <div class="wsj-body">
-                        <h4 class="font-bold mb-2">Flight Details</h4>
-                        <div class="space-y-1 text-sm">
-                            <p><strong>Passengers:</strong> Anastasia, Georgii, Leonid, Stanislav (infant)</p>
-                            <p><strong>Airline:</strong> Red Wings - WZ 1501</p>
-                            <p class="wsj-mono">Oct 18, 09:15 → Oct 18, 13:20</p>
-                        </div>
-                        <div class="mt-3 space-y-1">
-                            <a href="#" class="pdf-link text-xs block" onclick="openPDF('Anastasia_KZN-TBS_Oct18_2025.pdf')">📄 Anastasia E-Ticket</a>
-                            <a href="#" class="pdf-link text-xs block" onclick="openPDF('Georgii_KZN-TBS_Oct18_2025.pdf')">📄 Georgii E-Ticket</a>
-                            <a href="#" class="pdf-link text-xs block" onclick="openPDF('Leonid_KZN-TBS_Oct18_2025.pdf')">📄 Leonid E-Ticket</a>
-                            <a href="#" class="pdf-link text-xs block" onclick="openPDF('Stanislav_KZN-TBS_Oct18_2025.pdf')">📄 Stanislav E-Ticket</a>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-4 rounded">
-                        <h4 class="font-bold mb-3 text-sm">Baggage per Passenger</h4>
-                        <div class="space-y-3">
+                        <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <p class="text-xs font-semibold mb-2">Adults (each):</p>
-                                <table class="w-full text-sm">
-                                    <tr class="border-b">
-                                        <td class="py-1">Checked</td>
-                                        <td class="py-1 text-right">Not included</td>
-                                    </tr>
-                                    <tr class="border-b">
-                                        <td class="py-1">Hand baggage</td>
-                                        <td class="py-1 text-right">1 pc × 5 kg</td>
-                                    </tr>
-                                    <tr class="bg-gray-100">
-                                        <td class="py-1 font-bold">Total per adult</td>
-                                        <td class="py-1 text-right font-bold">5 kg</td>
-                                    </tr>
-                                </table>
+                                <p class="text-sm font-semibold text-gray-700 mb-2">Flight Details</p>
+                                <p class="text-sm text-gray-600">✈️ Turkish Airlines TK 1787</p>
+                                <p class="text-sm text-gray-600 font-mono">Oct 17, 21:50 → Oct 18, 02:10</p>
+                                <p class="text-sm text-gray-600 mt-2">Passengers: Miguel + Scooby Doo</p>
                             </div>
+                            <div class="bg-white bg-opacity-60 p-3 rounded">
+                                <p class="text-sm font-semibold text-gray-700 mb-2">🧳 Baggage</p>
+                                <p class="text-sm text-gray-600">Checked: 23 kg</p>
+                                <p class="text-sm text-gray-600">Cabin: 8 kg + 4 kg personal</p>
+                                <p class="text-sm text-green-600">🐕 Pet: DKK 2,665</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flight 2: Kazan → Tbilisi -->
+            <div class="flight-card p-6 mb-6 rounded-lg">
+                <div class="flex items-start gap-4">
+                    <div class="timeline-dot mt-1"></div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">2. Kazan → Tbilisi</h3>
+                        <p class="text-sm text-gray-600 mb-3">October 18, 2025</p>
+
+                        <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <p class="text-xs font-semibold mb-2">Infant (Stanislav):</p>
-                                <table class="w-full text-sm">
-                                    <tr class="border-b">
-                                        <td class="py-1">Hand baggage</td>
-                                        <td class="py-1 text-right">1 pc × 10 kg</td>
-                                    </tr>
-                                </table>
+                                <p class="text-sm font-semibold text-gray-700 mb-2">Flight Details</p>
+                                <p class="text-sm text-gray-600">✈️ Red Wings WZ 1501</p>
+                                <p class="text-sm text-gray-600 font-mono">Oct 18, 09:15 → Oct 18, 13:20</p>
+                                <p class="text-sm text-gray-600 mt-2">Passengers: Anastasia, Georgii, Leonid, Stanislav</p>
+                            </div>
+                            <div class="bg-white bg-opacity-60 p-3 rounded">
+                                <p class="text-sm font-semibold text-gray-700 mb-2">🧳 Baggage (After Upgrades)</p>
+                                <p class="text-sm text-gray-600">Leonid: 5 kg cabin</p>
+                                <p class="text-sm text-green-600">Anastasia: 10 kg cabin ✓</p>
+                                <p class="text-sm text-green-600">Georgii: 10 kg cabin ✓</p>
+                                <p class="text-sm text-gray-600">Stanislav: 10 kg cabin</p>
+                                <p class="text-sm font-bold text-gray-800 mt-2">Total: 35 kg</p>
                             </div>
                         </div>
-                        <p class="text-xs text-gray-600 mt-3">Group total: 25 kg cabin (3×5kg + 1×10kg)</p>
-                        <p class="text-xs text-gray-500 mt-1">Size: 40×30×20 cm (small backpack/soft bag)</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Flight 3: Tbilisi to Kazan (Leonid Return) -->
-        <section class="mb-8 bg-white shadow-sm border border-gray-200">
-            <div class="border-l-4 border-gray-400 p-6">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="timeline-dot" style="background: #9ca3af;"></div>
-                    <div>
-                        <h3 class="wsj-headline text-2xl">3. Tbilisi → Kazan (Return)</h3>
-                        <p class="text-sm text-gray-600">October 25, 2025</p>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6 mt-4">
-                    <div class="wsj-body">
-                        <h4 class="font-bold mb-2">Flight Details</h4>
-                        <div class="space-y-1 text-sm">
-                            <p><strong>Passenger:</strong> Leonid (solo return)</p>
-                            <p><strong>Airline:</strong> Red Wings - WZ 1502</p>
-                            <p class="wsj-mono">Oct 25, 14:25 → Oct 25, 16:20</p>
-                        </div>
-                        <div class="mt-3">
-                            <a href="#" class="pdf-link text-xs" onclick="openPDF('Leonid Tblisi - Kazan.pdf')">📄 View E-Ticket PDF</a>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-4 rounded">
-                        <h4 class="font-bold mb-3 text-sm">Baggage per Passenger</h4>
-                        <table class="w-full text-sm">
-                            <tr class="border-b">
-                                <td class="py-2">Checked</td>
-                                <td class="py-2 text-right">Not included</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-2">Hand baggage</td>
-                                <td class="py-2 text-right">1 pc × 5 kg</td>
-                            </tr>
-                            <tr class="bg-gray-100">
-                                <td class="py-2 font-bold">Total</td>
-                                <td class="py-2 text-right font-bold">5 kg</td>
-                            </tr>
-                        </table>
+            <!-- Flight 3: Leonid Return -->
+            <div class="flight-card p-6 mb-6 rounded-lg opacity-70">
+                <div class="flex items-start gap-4">
+                    <div class="timeline-dot mt-1 opacity-50"></div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">3. Tbilisi → Kazan (Leonid Return)</h3>
+                        <p class="text-sm text-gray-600 mb-3">October 25, 2025</p>
+                        <p class="text-sm text-gray-600">✈️ Red Wings WZ 1502</p>
+                        <p class="text-sm text-gray-600 font-mono">Oct 25, 14:25 → Oct 25, 16:20</p>
+                        <p class="text-sm text-gray-600 mt-2">Passenger: Leonid only</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Flight 4: Tbilisi to Istanbul -->
-        <section class="mb-8 bg-white shadow-sm border border-gray-200">
-            <div class="border-l-4 border-black p-6">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="timeline-dot"></div>
-                    <div>
-                        <h3 class="wsj-headline text-2xl">4. Tbilisi → Istanbul</h3>
-                        <p class="text-sm text-gray-600">November 20, 2025</p>
-                    </div>
-                </div>
+            <!-- Flight 4: Tbilisi → Istanbul -->
+            <div class="flight-card p-6 mb-6 rounded-lg">
+                <div class="flex items-start gap-4">
+                    <div class="timeline-dot mt-1"></div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">4. Tbilisi → Istanbul</h3>
+                        <p class="text-sm text-gray-600 mb-3">November 20, 2025</p>
 
-                <div class="grid md:grid-cols-2 gap-6 mt-4">
-                    <div class="wsj-body">
-                        <h4 class="font-bold mb-2">Flight Details</h4>
-                        <div class="space-y-1 text-sm">
-                            <p><strong>Passengers:</strong> Miguel, Anastasia, Georgii, Stanislav (4 people)</p>
-                            <p><strong>Airline:</strong> Turkish Airlines</p>
-                            <p><strong>Reservation:</strong> WGZEHM</p>
-                        </div>
-                        <div class="mt-3">
-                            <a href="#" class="pdf-link text-xs" onclick="openPDF('Tblisi - Istambul.pdf')">📄 View Booking PDF</a>
-                            <br>
-                            <a href="#" class="pdf-link text-xs" onclick="openPDF('Tblisi - Istambul Baggage Allowed Version 1.png')">📄 Baggage Policy</a>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-4 rounded">
-                        <h4 class="font-bold mb-3 text-sm">Baggage per Adult Passenger</h4>
-                        <table class="w-full text-sm">
-                            <tr class="border-b">
-                                <td class="py-2">Checked</td>
-                                <td class="py-2 text-right">1 pc × 23 kg</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-2">Carry-on</td>
-                                <td class="py-2 text-right">1 pc × 8 kg</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-2">Personal item</td>
-                                <td class="py-2 text-right">1 pc × 4 kg</td>
-                            </tr>
-                            <tr class="bg-gray-100">
-                                <td class="py-2 font-bold">Total per adult</td>
-                                <td class="py-2 text-right font-bold">35 kg</td>
-                            </tr>
-                        </table>
-                        <p class="text-xs text-gray-600 mt-3">Group total: ~105 kg checked + 44 kg cabin</p>
-                        <p class="text-xs text-gray-600">Infant: 8 kg cabin + stroller allowed</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Flight 5: Istanbul to Buenos Aires -->
-        <section class="mb-8 bg-white shadow-sm border border-gray-200">
-            <div class="border-l-4 border-gray-600 p-6">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="timeline-dot" style="background: #4b5563;"></div>
-                    <div>
-                        <h3 class="wsj-headline text-2xl">5. Istanbul → Buenos Aires</h3>
-                        <p class="text-sm text-gray-600">November 21, 2025 • Basic Economy Fare</p>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6 mt-4">
-                    <div class="wsj-body">
-                        <h4 class="font-bold mb-2">Flight Details</h4>
-                        <div class="space-y-1 text-sm">
-                            <p><strong>Passengers:</strong> Miguel, Anastasia, Georgii, Stanislav (4 people)</p>
-                            <p><strong>Airline:</strong> Turkish Airlines</p>
-                            <p><strong>Reservation:</strong> TF3BSV</p>
-                        </div>
-                        <div class="mt-3">
-                            <a href="#" class="pdf-link text-xs" onclick="openPDF('Istambul - Buenos Aires.pdf')">📄 View Booking PDF</a>
-                            <br>
-                            <a href="#" class="pdf-link text-xs" onclick="openPDF('Istambul - Buenos Aires Baggage Allowed Version 1.png')">📄 Baggage Policy</a>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-4 rounded">
-                        <h4 class="font-bold mb-3 text-sm">Baggage per Passenger</h4>
-                        <table class="w-full text-sm">
-                            <tr class="border-b">
-                                <td class="py-2">Checked</td>
-                                <td class="py-2 text-right">Not included</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-2">Carry-on</td>
-                                <td class="py-2 text-right">1 pc × 8 kg</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-2">Personal item</td>
-                                <td class="py-2 text-right">1 pc × 4 kg</td>
-                            </tr>
-                            <tr class="bg-gray-100">
-                                <td class="py-2 font-bold">Total per person</td>
-                                <td class="py-2 text-right font-bold">12 kg cabin</td>
-                            </tr>
-                        </table>
-                        <p class="text-xs text-gray-600 mt-3">Group total: 48 kg cabin (4 × 12 kg)</p>
-                        <p class="text-xs text-gray-500 mt-2">Note: Basic economy fare. Checked baggage available for purchase.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Baggage Capacity Summary -->
-        <section class="mb-8 bg-white shadow-sm border border-gray-200 p-6">
-            <h2 class="wsj-headline text-3xl mb-6">Baggage Capacity Overview</h2>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm wsj-body">
-                    <thead class="border-b-2 border-gray-300">
-                        <tr>
-                            <th class="py-3 text-left">Segment</th>
-                            <th class="py-3 text-left">Passengers</th>
-                            <th class="py-3 text-right">Checked</th>
-                            <th class="py-3 text-right">Cabin</th>
-                            <th class="py-3 text-right">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody class="wsj-mono">
-                        <tr class="border-b">
-                            <td class="py-3">CPH→IST→TBS<br><span class="text-xs text-gray-500">Oct 17-18</span></td>
-                            <td class="py-3">Miguel (1)</td>
-                            <td class="py-3 text-right">23 kg</td>
-                            <td class="py-3 text-right">12 kg</td>
-                            <td class="py-3 text-right font-bold">35 kg</td>
-                        </tr>
-                        <tr class="border-b bg-gray-50">
-                            <td class="py-3">KZN→TBS<br><span class="text-xs text-gray-500">Oct 18</span></td>
-                            <td class="py-3">4 people</td>
-                            <td class="py-3 text-right">0 kg</td>
-                            <td class="py-3 text-right">25 kg</td>
-                            <td class="py-3 text-right font-bold">25 kg</td>
-                        </tr>
-                        <tr class="border-b">
-                            <td class="py-3">TBS→KZN<br><span class="text-xs text-gray-500">Oct 25</span></td>
-                            <td class="py-3">Leonid (1)</td>
-                            <td class="py-3 text-right">0 kg</td>
-                            <td class="py-3 text-right">5 kg</td>
-                            <td class="py-3 text-right font-bold">5 kg</td>
-                        </tr>
-                        <tr class="border-b bg-gray-50">
-                            <td class="py-3">TBS→IST<br><span class="text-xs text-gray-500">Nov 20</span></td>
-                            <td class="py-3">4 people</td>
-                            <td class="py-3 text-right">~69-92 kg</td>
-                            <td class="py-3 text-right">44 kg</td>
-                            <td class="py-3 text-right font-bold">~113-136 kg</td>
-                        </tr>
-                        <tr class="border-b">
-                            <td class="py-3">IST→EZE<br><span class="text-xs text-gray-500">Nov 21</span></td>
-                            <td class="py-3">4 people</td>
-                            <td class="py-3 text-right">0 kg</td>
-                            <td class="py-3 text-right">48 kg</td>
-                            <td class="py-3 text-right font-bold">48 kg</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- End-to-End Summary -->
-        <section class="mb-8">
-            <div class="info-highlight p-6 rounded-lg">
-                <h2 class="wsj-headline text-2xl mb-4">End-to-End Travel Capacity</h2>
-
-                <div class="wsj-body space-y-4">
-                    <div>
-                        <h3 class="font-bold mb-2">What limits your baggage?</h3>
-                        <p class="text-gray-700">The Istanbul → Buenos Aires segment allows only cabin baggage (no checked bags included). This means the family can bring <strong>48 kg total</strong> across all 4 passengers for the entire journey unless you purchase additional checked baggage.</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-6 mt-4">
-                        <div class="bg-white p-4 rounded border border-gray-300">
-                            <h4 class="font-bold mb-3">Option 1: Travel Light</h4>
-                            <ul class="space-y-2 text-sm">
-                                <li>✓ Pack 48 kg total in cabin bags</li>
-                                <li>✓ 12 kg per person (4 passengers)</li>
-                                <li>✓ No additional fees</li>
-                                <li>✓ Simplest approach</li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-white p-4 rounded border border-gray-300">
-                            <h4 class="font-bold mb-3">Option 2: Purchase Checked Baggage</h4>
-                            <ul class="space-y-2 text-sm">
-                                <li>• Contact Turkish Airlines</li>
-                                <li>• Add checked bags to IST→EZE ticket</li>
-                                <li>• Additional cost applies</li>
-                                <li>• Allows more items</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 bg-gray-100 p-4 rounded">
-                        <h4 class="font-bold mb-2 text-sm">Helpful Details</h4>
-                        <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <p class="font-semibold">Red Wings flights:</p>
-                                <ul class="text-gray-600 space-y-1 mt-1">
-                                    <li>• Size: 40×30×20 cm (small bags)</li>
-                                    <li>• Adults: 5 kg each</li>
-                                    <li>• Infant: 10 kg</li>
-                                    <li>• Fits: Backpack, soft duffel</li>
-                                </ul>
+                                <p class="text-sm font-semibold text-gray-700 mb-2">Flight Details</p>
+                                <p class="text-sm text-gray-600">✈️ Turkish Airlines TK 386</p>
+                                <p class="text-sm text-gray-600 font-mono">Nov 20, 21:30 → Nov 20, 23:05</p>
+                                <p class="text-sm text-gray-600 mt-2">Passengers: Miguel, Anastasia, Georgii, Stanislav + Scooby Doo</p>
                             </div>
+                            <div class="bg-white bg-opacity-60 p-3 rounded">
+                                <p class="text-sm font-semibold text-gray-700 mb-2">🧳 Baggage</p>
+                                <p class="text-sm text-gray-600">Checked: 70 kg total (2 adults)</p>
+                                <p class="text-sm text-gray-600">Cabin: 44 kg total (all 4)</p>
+                                <p class="text-sm text-green-600">🐕 Pet: TRY 16,916</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flight 5: Istanbul → Buenos Aires -->
+            <div class="flight-card p-6 mb-6 rounded-lg">
+                <div class="flex items-start gap-4">
+                    <div class="timeline-dot mt-1"></div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">5. Istanbul → Buenos Aires</h3>
+                        <p class="text-sm text-gray-600 mb-3">November 21, 2025</p>
+
+                        <div class="grid md:grid-cols-2 gap-4">
                             <div>
-                                <p class="font-semibold">Turkish Airlines flights:</p>
-                                <ul class="text-gray-600 space-y-1 mt-1">
-                                    <li>• Size: 55×40×23 cm + 40×30×15 cm</li>
-                                    <li>• Total: 12 kg per person (8+4 kg)</li>
-                                    <li>• Fits: Rolling carry-on + laptop bag</li>
-                                </ul>
+                                <p class="text-sm font-semibold text-gray-700 mb-2">Flight Details</p>
+                                <p class="text-sm text-gray-600">✈️ Turkish Airlines TK 15</p>
+                                <p class="text-sm text-gray-600 font-mono">Nov 21, 01:35 → Nov 21, 11:55</p>
+                                <p class="text-sm text-gray-600 mt-2">Passengers: Miguel, Anastasia, Georgii, Stanislav + Scooby Doo</p>
+                            </div>
+                            <div class="bg-white bg-opacity-60 p-3 rounded">
+                                <p class="text-sm font-semibold text-gray-700 mb-2">🧳 Baggage</p>
+                                <p class="text-sm text-gray-600">Checked: Not included (Basic Economy)</p>
+                                <p class="text-sm text-amber-600 font-bold">Cabin: 44 kg TOTAL LIMIT</p>
+                                <p class="text-sm text-gray-600">From Kazan: 35 kg</p>
+                                <p class="text-sm text-gray-600">Miguel: 9 kg remaining</p>
+                                <p class="text-sm text-green-600">🐕 Pet: TRY 34,727</p>
                             </div>
                         </div>
                     </div>
@@ -474,762 +291,247 @@
             </div>
         </section>
 
-        <!-- Baggage Optimization Strategy Section -->
-        <section class="mb-12 bg-white shadow-sm border border-gray-200 p-6">
-            <h2 class="wsj-headline text-3xl mb-6 border-b-2 border-black pb-3">📊 Baggage Optimization Strategy</h2>
-
-            <!-- Turkish Airlines Call Confirmation -->
-            <div class="mb-8 p-4 bg-blue-50 border-l-4 border-blue-600">
-                <h3 class="font-bold text-xl mb-3">Turkish Airlines Call Confirmation</h3>
-                <p class="text-sm text-gray-600 mb-3">October 8, 2025 - Called Turkish Airlines customer service</p>
-
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="p-3 bg-white rounded">
-                        <p class="font-semibold mb-2">Flight 4 (TBS→IST) ✓</p>
-                        <ul class="text-sm space-y-1">
-                            <li>• Adults: <strong>70 kg total</strong> (2 × 35 kg)</li>
-                            <li>• Child & infant allowances apply additionally</li>
-                        </ul>
-                    </div>
-                    <div class="p-3 bg-white rounded">
-                        <p class="font-semibold mb-2">Flight 5 (IST→EZE) ✓</p>
-                        <ul class="text-sm space-y-1">
-                            <li>• Total: <strong>44 kg cabin</strong></li>
-                            <li>• 2 adults × 12 kg + 2 children × 10 kg</li>
-                            <li>• No checked baggage (Basic Economy)</li>
-                        </ul>
-                    </div>
+        <!-- Baggage Optimization - Collapsible -->
+        <section class="content-section p-8 mb-8 fade-in" style="animation-delay: 0.2s">
+            <div class="collapsible-header p-4 rounded-lg" onclick="toggleSection('baggage')">
+                <div class="flex justify-between items-center">
+                    <h2 class="section-title text-2xl">🎯 Baggage Optimization Strategy</h2>
+                    <svg class="chevron w-6 h-6 text-blue-600" id="baggage-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </div>
             </div>
-
-            <!-- FINAL DEFINITIVE BAGGAGE PLAN -->
-            <div class="mb-6">
-                <h3 class="font-bold text-xl mb-3 text-blue-600">🎯 FINAL DEFINITIVE BAGGAGE PLAN</h3>
-
-                <div class="p-4 bg-blue-50 border-l-4 border-blue-600 mb-4">
-                    <p class="font-semibold mb-2">Passenger Clarification:</p>
-                    <ul class="text-sm space-y-1">
-                        <li>• <strong>Kazan→Tbilisi:</strong> 4 passengers (Leonid, Anastasia, Georgii, Stanislav)</li>
-                        <li>• <strong>Leonid's situation:</strong> Stays in Tbilisi, returns to Kazan one week later. His bag continues with the family to Buenos Aires.</li>
-                        <li>• <strong>Turkish Airlines flights:</strong> 4 passengers (Miguel, Anastasia, Georgii, Stanislav) + Leonid's bag</li>
-                    </ul>
-                </div>
-
-                <!-- WHAT TO PURCHASE -->
-                <div class="p-4 bg-green-50 border-l-4 border-green-600 mb-4">
-                    <h4 class="font-bold text-lg mb-3">✅ WHAT TO PURCHASE: Red Wings Baggage Upgrades</h4>
-
-                    <p class="font-semibold mb-2">Purchase exactly 2 upgrades:</p>
-                    <p class="mb-2">Select <strong>"Aumento del equipaje de mano"</strong> (10 kg upgrade) for:</p>
-
-                    <div class="bg-white p-3 rounded mb-3">
-                        <ol class="text-sm space-y-2">
-                            <li><strong>1. Anastasia</strong> - Upgrade from 5 kg to 10 kg</li>
-                            <li><strong>2. Georgii</strong> - Upgrade from 5 kg to 10 kg</li>
+            <div class="collapsible-content" id="baggage-content">
+                <div class="p-4 mt-4">
+                    <div class="bg-green-50 p-4 rounded-lg mb-4">
+                        <h3 class="font-bold text-lg mb-3">✅ WHAT TO PURCHASE: Red Wings Baggage Upgrades</h3>
+                        <p class="mb-2 font-semibold">Purchase exactly 2 upgrades:</p>
+                        <p class="mb-2">Select <strong>"Aumento del equipaje de mano"</strong> (10 kg upgrade) for:</p>
+                        <ol class="list-decimal list-inside ml-4 mb-3">
+                            <li>Anastasia - Upgrade from 5 kg to 10 kg</li>
+                            <li>Georgii - Upgrade from 5 kg to 10 kg</li>
                         </ol>
-                    </div>
-
-                    <div class="bg-amber-50 p-3 rounded mb-3">
-                        <p class="font-semibold text-sm mb-1">Do NOT upgrade:</p>
-                        <ul class="text-xs space-y-1">
-                            <li>• Stanislav (already has 10 kg as infant - no upgrade needed)</li>
-                            <li>• Leonid (stays at 5 kg - no upgrade needed)</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white p-3 rounded">
-                        <p class="font-semibold">Cost: ~3,000 ₽</p>
-                        <p class="text-sm">(2 passengers × ~1,500 ₽ each)</p>
-                    </div>
-                </div>
-
-                <!-- FINAL BAGGAGE DISTRIBUTION -->
-                <div class="p-4 bg-gray-50 border-l-4 border-gray-600 mb-4">
-                    <h4 class="font-bold text-lg mb-3">📊 Final Baggage Distribution</h4>
-
-                    <div class="grid md:grid-cols-2 gap-4 mb-4">
-                        <div class="p-3 bg-white rounded">
-                            <p class="font-semibold mb-2">Red Wings KZN→TBS (after upgrades):</p>
-                            <ul class="text-sm space-y-1">
-                                <li>• Leonid: 1 bag × 5 kg</li>
-                                <li>• Anastasia: 1 bag × 10 kg ✅</li>
-                                <li>• Georgii: 1 bag × 10 kg ✅</li>
-                                <li>• Stanislav: 1 bag × 10 kg</li>
-                                <li><strong>Total: 4 bags, 35 kg</strong></li>
+                        <div class="bg-amber-50 p-3 rounded mb-3">
+                            <p class="font-semibold text-sm mb-1">Do NOT upgrade:</p>
+                            <ul class="text-sm">
+                                <li>• Stanislav (already has 10 kg as infant)</li>
+                                <li>• Leonid (stays at 5 kg)</li>
                             </ul>
                         </div>
-                        <div class="p-3 bg-white rounded">
-                            <p class="font-semibold mb-2">Turkish Airlines (all flights):</p>
-                            <ul class="text-sm space-y-1">
-                                <li>• Bags from Kazan: 35 kg</li>
-                                <li>• Miguel's bags: 9 kg</li>
-                                <li><strong>Total: 44 kg</strong></li>
-                                <li class="text-green-600 font-semibold">✅ Exactly at limit</li>
-                            </ul>
+                        <p class="font-bold">Cost: ~3,000 ₽ (2 passengers × ~1,500 ₽ each)</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h3 class="font-bold text-lg mb-3">📊 Final Baggage Distribution</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <p class="font-semibold mb-2">Red Wings KZN→TBS (after upgrades):</p>
+                                <ul class="text-sm space-y-1">
+                                    <li>• Leonid: 1 bag × 5 kg</li>
+                                    <li>• Anastasia: 1 bag × 10 kg ✅</li>
+                                    <li>• Georgii: 1 bag × 10 kg ✅</li>
+                                    <li>• Stanislav: 1 bag × 10 kg</li>
+                                    <li class="font-bold">Total: 4 bags, 35 kg</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-semibold mb-2">Turkish Airlines (all flights):</p>
+                                <ul class="text-sm space-y-1">
+                                    <li>• Bags from Kazan: 35 kg</li>
+                                    <li>• Miguel's bags: 9 kg</li>
+                                    <li class="font-bold text-green-600">✅ Total: 44 kg (exactly at limit)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="p-3 bg-blue-50 rounded">
-                        <p class="font-semibold text-sm mb-2">Physical management:</p>
-                        <ul class="text-xs space-y-1">
-                            <li>• Anastasia manages 3 bags: hers (10 kg) + Georgii's (10 kg) + Stanislav's (10 kg) = <strong>30 kg total</strong></li>
-                            <li>• Each bag registered to its respective passenger at check-in</li>
-                            <li>• Each bag must be ≤55×40×25 cm</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="p-3 bg-gray-100 rounded text-sm">
-                    <p class="font-semibold mb-1">Why not checked baggage?</p>
-                    <p>Checked baggage on Red Wings cannot be carried as cabin on Turkish Airlines flights. The upgrade option ensures consistent cabin bags throughout the journey.</p>
-                </div>
-
-                <!-- Bag Size Restrictions -->
-                <div class="mt-4 p-4 bg-purple-50 border-l-4 border-purple-600">
-                    <h3 class="font-bold text-lg mb-3">⚠️ Important: Bag Size Restrictions</h3>
-
-                    <div class="p-3 bg-white rounded text-sm mb-3">
-                        <p class="font-semibold mb-1">Note:</p>
-                        <p>4 passengers travel Kazan→Tbilisi (Leonid, Anastasia, Georgii, Stanislav). Leonid stays in Tbilisi for one week, but his bag continues with the family to Buenos Aires.</p>
-                    </div>
-
-                    <div class="p-3 bg-blue-100 border-l-4 border-blue-600 text-sm mb-3">
-                        <p class="font-semibold mb-1">🔄 Critical correction:</p>
-                        <p>The Red Wings 10 kg upgrade ALSO increases size limits!</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-3 mb-3">
-                        <div class="p-3 bg-gray-100 rounded text-sm">
-                            <p class="font-semibold mb-2">Red Wings basic (5 kg):</p>
-                            <p class="text-xs">Maximum: 40×30×20 cm</p>
-                        </div>
-                        <div class="p-3 bg-green-100 rounded text-sm">
-                            <p class="font-semibold mb-2">Red Wings WITH 10 kg upgrade:</p>
-                            <p class="font-bold text-green-700">Maximum: 55×40×25 cm ✅</p>
-                            <p class="text-xs mt-1">Matches cabin roller size!</p>
-                        </div>
-                        <div class="p-3 bg-gray-100 rounded text-sm">
-                            <p class="font-semibold mb-2">Turkish Airlines:</p>
-                            <p class="text-xs">• Carry-on: 55×40×23 cm</p>
-                            <p class="text-xs">• Personal: 40×30×15 cm</p>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg mb-3">⚠️ Important: Bag Size Restrictions</h3>
+                        <p class="mb-3 text-sm">Red Wings 10 kg upgrade allows <strong>55×40×25 cm</strong> (matches standard cabin roller size)</p>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div class="bg-green-50 p-3 rounded">
+                                <p class="font-semibold text-sm mb-2">✅ Will work (with 10 kg upgrade):</p>
+                                <ul class="text-xs space-y-1">
+                                    <li>• Standard cabin-sized rollers (up to 55×40×25 cm)</li>
+                                    <li>• Backpacks within dimensions</li>
+                                    <li>• Soft duffel bags</li>
+                                </ul>
+                            </div>
+                            <div class="bg-red-50 p-3 rounded">
+                                <p class="font-semibold text-sm mb-2">❌ Will NOT work:</p>
+                                <ul class="text-xs space-y-1">
+                                    <li>• 58 cm suitcase (ABS plastic 55L) - exceeds by 3 cm</li>
+                                    <li>• Large roller suitcases (70-80 cm)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
-                    <p class="text-sm font-semibold mb-2">With the 10 kg upgrade, size restrictions align:</p>
-
-                    <div class="grid md:grid-cols-2 gap-3">
-                        <div class="p-3 bg-green-50 rounded text-sm">
-                            <p class="font-semibold mb-2">✅ Will work (with 10 kg upgrade):</p>
-                            <ul class="space-y-1 text-xs">
-                                <li>• Standard cabin-sized rollers (up to 55×40×25 cm)</li>
-                                <li>• Backpacks within dimensions</li>
-                                <li>• Soft duffel bags</li>
-                            </ul>
-                        </div>
-                        <div class="p-3 bg-red-50 rounded text-sm">
-                            <p class="font-semibold mb-2">❌ Will NOT work:</p>
-                            <ul class="space-y-1 text-xs">
-                                <li>• <strong>58 cm suitcase</strong> (ABS plastic 55L) - exceeds 55 cm by 3 cm</li>
-                                <li>• Large roller suitcases (70-80 cm)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-3 p-3 bg-red-100 border-l-4 border-red-600 text-sm">
-                        <p class="font-semibold">⚠️ Important:</p>
-                        <p>The 58 cm ABS plastic suitcase (55L) that Anastasia wants to bring is <strong>too large</strong> for Red Wings even with the upgrade. Maximum is 55 cm on longest dimension.</p>
-                    </div>
-                </div>
-
-                <!-- Screenshot -->
-                <div class="mt-4">
-                    <img src="red-wings-baggage-upgrade-menu.png" alt="Red Wings Baggage Upgrade Options" class="w-full border-2 border-gray-300 rounded">
-                    <p class="text-xs text-gray-500 mt-2 text-center">Red Wings baggage upgrade interface showing the recommended "Aumento del equipaje de mano" option</p>
                 </div>
             </div>
         </section>
 
-        <!-- Pet Travel Section -->
-        <section class="mb-12 bg-white shadow-sm border border-gray-200 p-6">
-            <h2 class="wsj-headline text-3xl mb-6">Pet Travel: Scooby Doo's Journey</h2>
-
-            <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-6">
-                <h3 class="font-bold text-lg mb-2">Can Scooby Doo travel from Copenhagen to Buenos Aires?</h3>
-                <p class="text-sm"><strong>Answer:</strong> Scooby Doo can travel from Copenhagen to Tbilisi (confirmed), but documentation for subsequent segments (Tbilisi → Istanbul → Buenos Aires) is not available in the tickets.</p>
-            </div>
-
-            <!-- CPH to TBS - Confirmed -->
-            <div class="mb-6 border-l-4 border-green-500 pl-4">
-                <h3 class="font-bold text-lg mb-2">Copenhagen → Tbilisi (Confirmed ✓)</h3>
-                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Scooby Doo - Copenhagen Tblisi.png')" class="pdf-link">Scooby Doo - Copenhagen Tblisi.png</a></p>
-
-                <div class="bg-gray-50 p-3 rounded text-sm">
-                    <p class="font-semibold mb-2">Evidence from fare breakdown:</p>
-                    <ul class="space-y-1 text-gray-700">
-                        <li><strong>"Pet carriage fee":</strong> DKK 2,665</li>
-                        <li><strong>"Pet transportation fee":</strong> DKK 2,665</li>
-                    </ul>
-                    <p class="mt-3 text-gray-700">This is included in Miguel's booking for the Turkish Airlines flights CPH→IST→TBS.</p>
-                </div>
-
-                <p class="mt-2 text-sm text-green-700">✓ Scooby Doo is confirmed on this segment with fees paid.</p>
-            </div>
-
-            <!-- TBS to IST - Confirmed -->
-            <div class="mb-6 border-l-4 border-green-500 pl-4">
-                <h3 class="font-bold text-lg mb-2">Tbilisi → Istanbul (Confirmed ✓)</h3>
-                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Tblisi - Istambul.pdf')" class="pdf-link">Tblisi - Istambul.pdf</a></p>
-
-                <div class="bg-green-50 p-3 rounded text-sm">
-                    <p class="font-semibold mb-2">Evidence:</p>
-                    <p class="text-gray-700">The booking document shows a "🐾 Traveling with a pet" section at the bottom of page 1 with complete pet details:</p>
-
-                    <div class="mt-3 p-3 bg-white border border-green-300 rounded">
-                        <p class="font-semibold text-gray-800 mb-2">Tbilisi (TBS) - Istanbul (IST)</p>
-                        <ul class="space-y-1 text-gray-700 text-sm">
-                            <li><strong>Passenger name:</strong> MR. MIGUEL LEMOS</li>
-                            <li><strong>Type and breed:</strong> DOG / BLACK AND TAN TERRIER</li>
-                            <li><strong>Pet dimensions:</strong> 15 kg - 46×35×24 cm</li>
-                            <li><strong>Pet fee:</strong> <span class="font-bold text-green-700">TRY 16,916</span></li>
-                        </ul>
-                    </div>
-
-                    <p class="text-gray-700 mt-3">Scooby Doo is confirmed on this flight segment.</p>
+        <!-- Pet Travel - Collapsible -->
+        <section class="content-section p-8 mb-8 fade-in" style="animation-delay: 0.3s">
+            <div class="collapsible-header p-4 rounded-lg" onclick="toggleSection('pet')">
+                <div class="flex justify-between items-center">
+                    <h2 class="section-title text-2xl">🐕 Pet Travel: Scooby Doo</h2>
+                    <svg class="chevron w-6 h-6 text-blue-600" id="pet-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </div>
             </div>
-
-            <!-- IST to EZE - Confirmed -->
-            <div class="mb-6 border-l-4 border-green-500 pl-4">
-                <h3 class="font-bold text-lg mb-2">Istanbul → Buenos Aires (Confirmed ✓)</h3>
-                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Istambul - Buenos Aires.pdf')" class="pdf-link">Istambul - Buenos Aires.pdf</a></p>
-
-                <div class="bg-green-50 p-3 rounded text-sm">
-                    <p class="font-semibold mb-2">Evidence:</p>
-                    <p class="text-gray-700">The booking document shows a "🐾 Traveling with a pet" section at the bottom of page 1 with complete pet details:</p>
-
-                    <div class="mt-3 p-3 bg-white border border-green-300 rounded">
-                        <p class="font-semibold text-gray-800 mb-2">Istanbul (IST) - Buenos Aires (EZE)</p>
-                        <ul class="space-y-1 text-gray-700 text-sm">
-                            <li><strong>Passenger name:</strong> MR. MIGUEL LEMOS</li>
-                            <li><strong>Type and breed:</strong> DOG / BLACK AND TAN TERRIER</li>
-                            <li><strong>Pet dimensions:</strong> 15 kg - 45×30×25 cm</li>
-                            <li><strong>Pet fee:</strong> <span class="font-bold text-green-700">TRY 34,727.00</span></li>
-                        </ul>
+            <div class="collapsible-content" id="pet-content">
+                <div class="p-4 mt-4">
+                    <div class="bg-green-100 border-l-4 border-green-600 p-4 mb-4">
+                        <p class="font-bold text-lg">✅ Scooby Doo can travel on all Turkish Airlines flights!</p>
+                        <p class="text-sm mt-2">Pet: Black and Tan Terrier, 15 kg, Carrier: ~45-46 × 30-35 × 24-25 cm</p>
                     </div>
 
-                    <p class="text-gray-700 mt-3">Scooby Doo is confirmed on this flight segment.</p>
-
-                    <div class="mt-3 p-2 bg-blue-50 border border-blue-200 rounded text-sm">
-                        <strong>Note:</strong> Argentina has specific pet import requirements (health certificates, vaccinations, etc.). Ensure all documentation is prepared before travel.
+                    <div class="space-y-3">
+                        <div class="bg-blue-50 p-4 rounded">
+                            <p class="font-semibold">Flight 1: Copenhagen → Tbilisi</p>
+                            <p class="text-sm text-gray-600">Confirmed - Fee: DKK 2,665</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded">
+                            <p class="font-semibold">Flight 4: Tbilisi → Istanbul</p>
+                            <p class="text-sm text-gray-600">Confirmed - Fee: TRY 16,916</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded">
+                            <p class="font-semibold">Flight 5: Istanbul → Buenos Aires</p>
+                            <p class="text-sm text-gray-600">Confirmed - Fee: TRY 34,727</p>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Summary -->
-            <div class="mt-6 bg-gray-100 p-4 rounded-lg">
-                <h3 class="font-bold text-lg mb-3">Pet Travel Summary</h3>
-
-                <div class="bg-green-50 border-2 border-green-500 p-4 rounded mb-4">
-                    <p class="text-lg font-bold text-green-800 mb-2">✅ Scooby Doo can travel the complete route from Copenhagen to Buenos Aires!</p>
-                    <p class="text-sm text-gray-700">All three Turkish Airlines flight segments have confirmed pet bookings.</p>
-                </div>
-
-                <div class="text-sm space-y-2 mb-4">
-                    <div class="flex items-start gap-2">
-                        <span class="text-green-600 font-bold">1. ✅</span>
-                        <div><strong>CPH→IST→TBS</strong> (Oct 17-18): DKK 2,665</div>
+                    <div class="mt-4 p-3 bg-amber-50 rounded">
+                        <p class="text-sm font-semibold">Note:</p>
+                        <p class="text-sm">Red Wings does not allow pets in cabin, so Scooby Doo cannot travel on Kazan→Tbilisi segment.</p>
                     </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-green-600 font-bold">2. ✅</span>
-                        <div><strong>TBS→IST</strong> (Nov 20): TRY 16,916</div>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <span class="text-green-600 font-bold">3. ✅</span>
-                        <div><strong>IST→EZE</strong> (Nov 21): TRY 34,727.00</div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-100 p-3 rounded text-sm mb-4">
-                    <p class="font-semibold mb-2">Pet Details:</p>
-                    <ul class="space-y-1 text-gray-700">
-                        <li><strong>Type and breed:</strong> Dog / Black and Tan Terrier</li>
-                        <li><strong>Weight:</strong> 15 kg</li>
-                        <li><strong>Carrier dimensions:</strong> Approximately 45-46 × 30-35 × 24-25 cm</li>
-                        <li><strong>Total pet fees:</strong> DKK 2,665 + TRY 51,643.00</li>
-                    </ul>
-                </div>
-
-                <div class="mt-4 bg-blue-50 border border-blue-200 p-3 rounded text-sm">
-                    <p class="font-semibold mb-2">Important Reminders:</p>
-                    <ul class="list-disc list-inside space-y-1 text-gray-700">
-                        <li>Ensure all pet documentation is prepared (health certificates, vaccinations)</li>
-                        <li>Argentina has specific pet import requirements - verify compliance before travel</li>
-                        <li>Confirm pet carrier meets airline specifications</li>
-                        <li>Bring copies of all pet booking confirmations and payment receipts</li>
-                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Call Reference Information Section -->
-        <section class="mb-12 bg-white shadow-sm border border-gray-200 p-6">
-            <h2 class="wsj-headline text-3xl mb-6 border-b-2 border-black pb-3">📞 Call Reference Information</h2>
-
-            <!-- Turkish Airlines -->
-            <div class="mb-8">
-                <h3 class="wsj-headline text-2xl mb-4 text-gray-800">For Turkish Airlines Support Call</h3>
-                <p class="text-sm text-gray-600 mb-6">Use this information when calling Turkish Airlines about baggage allowances, pet travel, or booking modifications:</p>
-
-                <!-- Flight 1 -->
-                <div class="mb-6 p-4 border-l-4 border-blue-600 bg-blue-50">
-                    <h4 class="font-bold text-lg mb-3">Flight 1: Copenhagen → Tbilisi (via Istanbul)</h4>
-                    <div class="grid md:grid-cols-2 gap-3 text-sm">
-                        <div><strong>Reservation Code (PNR):</strong> <span class="wsj-mono bg-white px-2 py-1 rounded">S37S3U</span></div>
-                        <div><strong>Ticket Number:</strong> <span class="wsj-mono bg-white px-2 py-1 rounded">235-2271903912</span></div>
-                        <div><strong>Passenger:</strong> Miguel Lemos</div>
-                        <div><strong>Travel Date:</strong> October 17-18, 2025</div>
-                        <div><strong>Class:</strong> Economy (Q)</div>
-                    </div>
-                    <div class="mt-3 text-sm">
-                        <strong>Flights:</strong>
-                        <ul class="list-disc list-inside ml-2 mt-1">
-                            <li>TK 1786: Copenhagen (CPH) → Istanbul (IST), Oct 17, 19:20 - 23:40</li>
-                            <li>TK 0376: Istanbul (IST) → Tbilisi (TBS), Oct 18, 02:10 - 05:30</li>
-                        </ul>
-                    </div>
-                    <div class="mt-3 p-2 bg-green-100 rounded text-sm">
-                        <strong>Pet:</strong> Scooby Doo (Dog / Black and Tan Terrier, 15 kg) - <strong>✓ Confirmed, Fee: DKK 2,665</strong>
-                    </div>
+        <!-- Contact Reference - Collapsible -->
+        <section class="content-section p-8 mb-8 fade-in" style="animation-delay: 0.4s">
+            <div class="collapsible-header p-4 rounded-lg" onclick="toggleSection('contact')">
+                <div class="flex justify-between items-center">
+                    <h2 class="section-title text-2xl">📞 Airline Contact Reference</h2>
+                    <svg class="chevron w-6 h-6 text-blue-600" id="contact-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </div>
-
-                <!-- Flight 4 -->
-                <div class="mb-6 p-4 border-l-4 border-blue-600 bg-blue-50">
-                    <h4 class="font-bold text-lg mb-3">Flight 4: Tbilisi → Istanbul</h4>
-                    <div class="grid md:grid-cols-2 gap-3 text-sm">
-                        <div><strong>Reservation Code (PNR):</strong> <span class="wsj-mono bg-white px-2 py-1 rounded">WGZEHM</span></div>
-                        <div><strong>Ticket Numbers:</strong> <span class="text-amber-700">Not yet issued</span></div>
-                        <div><strong>Travel Date:</strong> November 20, 2025</div>
-                        <div class="md:col-span-2">
-                            <strong>Passengers:</strong><br>
-                            • Adults: Miguel Lemos, Anastasiia Viazova<br>
-                            • Child: Georgii Viazov (3 years)<br>
-                            • Infant: Stanislav Viazov (1 year)
+            </div>
+            <div class="collapsible-content" id="contact-content">
+                <div class="p-4 mt-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50 p-4 rounded">
+                            <h3 class="font-bold mb-2">Turkish Airlines</h3>
+                            <p class="text-sm font-mono">Reservation: S37S3U (Miguel)</p>
+                            <p class="text-sm font-mono">Reservation: WGZEHM (4 pax, TBS→IST)</p>
+                            <p class="text-sm font-mono">Reservation: TF3BSV (4 pax, IST→EZE)</p>
                         </div>
-                        <div><strong>Route:</strong> Tbilisi (TBS) → Istanbul (IST)</div>
-                    </div>
-                    <div class="mt-3 p-2 bg-blue-100 rounded text-sm">
-                        <strong>Baggage (confirmed with Turkish Airlines):</strong><br>
-                        • Adults: 70 kg total (2 × 35 kg)<br>
-                        • Child & Infant: Additional allowance applies
-                    </div>
-                    <div class="mt-3 p-2 bg-green-100 rounded text-sm">
-                        <strong>Pet:</strong> Scooby Doo (Dog / Black and Tan Terrier, 15 kg, 46×35×24 cm) - <strong>✓ Confirmed, Fee: TRY 16,916</strong>
-                    </div>
-                </div>
-
-                <!-- Flight 5 -->
-                <div class="mb-6 p-4 border-l-4 border-blue-600 bg-blue-50">
-                    <h4 class="font-bold text-lg mb-3">Flight 5: Istanbul → Buenos Aires</h4>
-                    <div class="grid md:grid-cols-2 gap-3 text-sm">
-                        <div><strong>Reservation Code (PNR):</strong> <span class="wsj-mono bg-white px-2 py-1 rounded">TF3BSV</span></div>
-                        <div><strong>Ticket Numbers:</strong> <span class="text-amber-700">Not yet issued</span></div>
-                        <div><strong>Travel Date:</strong> November 21, 2025</div>
-                        <div class="md:col-span-2">
-                            <strong>Passengers:</strong><br>
-                            • Adults: Miguel Lemos, Anastasiia Viazova<br>
-                            • Child: Georgii Viazov (3 years)<br>
-                            • Infant: Stanislav Viazov (1 year)
+                        <div class="bg-red-50 p-4 rounded">
+                            <h3 class="font-bold mb-2">Red Wings</h3>
+                            <p class="text-sm font-mono">Reservation: B18565959305</p>
+                            <p class="text-sm">4 passengers, Oct 18, KZN→TBS</p>
                         </div>
-                        <div><strong>Route:</strong> Istanbul (IST) → Buenos Aires (EZE)</div>
-                        <div><strong>Fare Type:</strong> <span class="text-amber-700 font-semibold">Basic Economy</span></div>
                     </div>
-                    <div class="mt-3 p-2 bg-blue-100 rounded text-sm">
-                        <strong>Baggage (confirmed with Turkish Airlines):</strong><br>
-                        • Checked: NOT included (0 kg)<br>
-                        • Cabin: <strong>44 kg total</strong> (2 adults × 12 kg + 2 children × 10 kg)
-                    </div>
-                    <div class="mt-3 p-2 bg-green-100 rounded text-sm">
-                        <strong>Pet:</strong> Scooby Doo (Dog / Black and Tan Terrier, 15 kg, 45×30×25 cm) - <strong>✓ Confirmed, Fee: TRY 34,727.00</strong>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Red Wings Airlines -->
-            <div class="mb-8">
-                <h3 class="wsj-headline text-2xl mb-4 text-gray-800">For Red Wings Airlines Support Call</h3>
-
-                <!-- Flight 2 -->
-                <div class="mb-6 p-4 border-l-4 border-red-600 bg-red-50">
-                    <h4 class="font-bold text-lg mb-3">Flight 2: Kazan → Tbilisi</h4>
-                    <div class="grid md:grid-cols-2 gap-3 text-sm">
-                        <div><strong>Reservation Code:</strong> <span class="wsj-mono bg-white px-2 py-1 rounded">B18565959305</span></div>
-                        <div><strong>Travel Date:</strong> October 18, 2025</div>
-                        <div class="md:col-span-2">
-                            <strong>Passengers:</strong><br>
-                            • Adults: Anastasiia Viazova, Leonid Viazov<br>
-                            • Child: Georgii Viazov (3 years)<br>
-                            • Infant: Stanislav Viazov (1 year)
-                        </div>
-                        <div><strong>Flight:</strong> WZ 1501, 09:15 - 13:20</div>
-                        <div><strong>Class:</strong> Economy (FLTOW)</div>
-                    </div>
-                    <div class="mt-3 p-3 bg-white border border-gray-300 rounded text-sm">
-                        <strong>Ticket Numbers:</strong>
-                        <ul class="list-disc list-inside ml-2 mt-1">
-                            <li>Anastasiia (adult): <span class="wsj-mono">309-6127188873</span></li>
-                            <li>Leonid (adult): <span class="wsj-mono">309-6127188872</span></li>
-                            <li>Georgii (child, 3yr): <span class="wsj-mono">309-6127188874</span></li>
-                            <li>Stanislav (infant, 1yr): <span class="wsj-mono">309-6127188875</span></li>
-                        </ul>
-                    </div>
-                    <div class="mt-3 p-2 bg-gray-100 rounded text-sm">
-                        <strong>Baggage:</strong> Hand baggage only - 5 kg per adult/child, 10 kg for infant (40×30×20 cm)
-                    </div>
-                </div>
-
-                <!-- Flight 3 -->
-                <div class="mb-6 p-4 border-l-4 border-red-600 bg-red-50">
-                    <h4 class="font-bold text-lg mb-3">Flight 3: Tbilisi → Kazan (Leonid Return)</h4>
-                    <div class="grid md:grid-cols-2 gap-3 text-sm">
-                        <div><strong>Ticket Number:</strong> <span class="wsj-mono bg-white px-2 py-1 rounded">309-6171827315</span></div>
-                        <div><strong>Passenger:</strong> Leonid Viazov</div>
-                        <div><strong>Travel Date:</strong> October 25, 2025</div>
-                        <div><strong>Flight:</strong> WZ 1502, 14:25 - 16:20</div>
-                        <div><strong>Class:</strong> Economy (FLTOW)</div>
-                    </div>
-                    <div class="mt-3 p-2 bg-gray-100 rounded text-sm">
-                        <strong>Baggage:</strong> Hand baggage only - 5 kg (40×30×20 cm)
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Reference Summary -->
-            <div class="p-4 bg-gray-100 border-2 border-gray-300 rounded">
-                <h3 class="font-bold text-lg mb-3">Quick Reference Summary</h3>
-                <div class="grid md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                        <p class="font-semibold mb-2">Turkish Airlines Reservations:</p>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li><span class="wsj-mono bg-white px-1">S37S3U</span> - Miguel, Oct 17-18, CPH→TBS</li>
-                            <li><span class="wsj-mono bg-white px-1">WGZEHM</span> - 4 passengers, Nov 20, TBS→IST</li>
-                            <li><span class="wsj-mono bg-white px-1">TF3BSV</span> - 4 passengers, Nov 21, IST→EZE</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="font-semibold mb-2">Red Wings Reservation:</p>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li><span class="wsj-mono bg-white px-1">B18565959305</span> - 4 passengers, Oct 18, KZN→TBS</li>
-                            <li>Leonid return - Oct 25, TBS→KZN</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mt-3 p-2 bg-green-100 rounded">
-                    <p class="font-semibold mb-1">Pet Travel (Turkish Airlines only):</p>
-                    <ul class="list-disc list-inside text-sm">
-                        <li>All three Turkish Airlines flights have Scooby Doo confirmed</li>
-                        <li>Total pet fees: DKK 2,665 + TRY 51,643.00</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Data Verification Section -->
-        <section class="mb-12 bg-white shadow-sm border border-gray-200 p-6">
-            <h2 class="wsj-headline text-3xl mb-6">Data Verification & Sources</h2>
-            <p class="text-sm text-gray-600 mb-6">All baggage allowances are taken directly from official e-tickets and booking documents. Here's the evidence:</p>
-
-            <!-- Flight 1 Verification -->
-            <div class="mb-6 border-l-4 border-blue-500 pl-4">
-                <h3 class="font-bold text-lg mb-2">1. Copenhagen → Tbilisi (Miguel) - 35 kg per person</h3>
-                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Miguel Copenhagen - Tblisi.pdf')" class="pdf-link">Miguel Copenhagen - Tblisi.pdf</a></p>
-
-                <div class="bg-gray-50 p-3 rounded text-sm space-y-2">
-                    <div>
-                        <p class="font-semibold">Checked baggage:</p>
-                        <p class="text-gray-700 italic">"Free Baggage: The free baggage allowance may vary depending on the origin-destination and the cabin... <strong>upper limit of 1 piece for economy baggage is 23 kg.</strong>"</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold">Cabin baggage:</p>
-                        <p class="text-gray-700 italic">"Cabin baggage which is up to <strong>8 kg/per pcs</strong> is carried without any charge... <strong>1 piece for economy classes</strong>. Max. dimensions for each piece are 23X40X55 cm."</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold">Personal item:</p>
-                        <p class="text-gray-700">Turkish Airlines standard: 1 piece × 4 kg (40×30×15 cm)</p>
-                    </div>
-                </div>
-
-                <p class="mt-2 text-sm font-semibold">Calculation: 23 kg + 8 kg + 4 kg = <span class="text-blue-600">35 kg per person</span></p>
-            </div>
-
-            <!-- Flight 2 Verification -->
-            <div class="mb-6 border-l-4 border-gray-500 pl-4">
-                <h3 class="font-bold text-lg mb-2">2. Kazan → Tbilisi (4 passengers) - 25 kg total cabin</h3>
-                <p class="text-sm mb-2"><strong>Sources:</strong>
-                    <a href="#" onclick="openPDF('Anastasia Kazan - Tblisi E-Ticket.pdf')" class="pdf-link text-xs">Anastasia</a>,
-                    <a href="#" onclick="openPDF('Georgii Kazan - Tblisi E-Ticket.pdf')" class="pdf-link text-xs">Georgii</a>,
-                    <a href="#" onclick="openPDF('Leonid Kazan - Tblisi E-Ticket.pdf')" class="pdf-link text-xs">Leonid</a>,
-                    <a href="#" onclick="openPDF('Stanislav Kazan - Tblisi E-Ticket .pdf')" class="pdf-link text-xs">Stanislav</a>
-                </p>
-
-                <div class="bg-gray-50 p-3 rounded text-sm space-y-2">
-                    <div>
-                        <p class="font-semibold">Adults (Anastasia, Georgii, Leonid):</p>
-                        <p class="text-gray-700 italic">"Checked baggage is not included in the fare."</p>
-                        <p class="text-gray-700 italic">"Hand baggage: <strong>1 pc 5kg per passenger</strong> 40x30x20 cm."</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold">Infant (Stanislav):</p>
-                        <p class="text-gray-700 italic">"Baggage: <strong>1 pc 10kg per passenger</strong>"</p>
-                    </div>
-                </div>
-
-                <p class="mt-2 text-sm font-semibold">Calculation: (3 × 5 kg) + (1 × 10 kg) = <span class="text-gray-600">25 kg total</span></p>
-            </div>
-
-            <!-- Flight 3 Verification -->
-            <div class="mb-6 border-l-4 border-gray-400 pl-4">
-                <h3 class="font-bold text-lg mb-2">3. Tbilisi → Kazan (Leonid) - 5 kg cabin</h3>
-                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Leonid Tblisi - Kazan.pdf')" class="pdf-link">Leonid Tblisi - Kazan.pdf</a></p>
-
-                <div class="bg-gray-50 p-3 rounded text-sm">
-                    <p class="text-gray-700 italic">"Багаж/Baggage allow: <strong>NO</strong>"</p>
-                    <p class="text-gray-700 mt-1">Hand baggage: Red Wings standard (5 kg from outbound policy)</p>
-                </div>
-
-                <p class="mt-2 text-sm font-semibold">Total: <span class="text-gray-600">5 kg cabin only</span></p>
-            </div>
-
-            <!-- Flight 4 Verification -->
-            <div class="mb-6 border-l-4 border-blue-500 pl-4">
-                <h3 class="font-bold text-lg mb-2">4. Tbilisi → Istanbul (4 passengers) - ~113-136 kg</h3>
-                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Tblisi - Istambul Baggage Allowed Version 1.png')" class="pdf-link">Tblisi - Istambul Baggage Allowed Version 1.png</a></p>
-
-                <div class="bg-gray-50 p-3 rounded text-sm space-y-2">
-                    <div>
-                        <p class="font-semibold">Adults (each):</p>
-                        <p class="text-gray-700 italic">"Checked baggage: <strong>1 piece per person, 23 kg each</strong>"</p>
-                        <p class="text-gray-700 italic">"Carry-on baggage: <strong>1 piece per person, 8 kg each</strong>"</p>
-                        <p class="text-gray-700 italic">"Personal item: <strong>1 piece per person, 4 kg each</strong>"</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold">Infant (Stanislav):</p>
-                        <p class="text-gray-700 italic">"Carry-on: 8 kg" + "Stroller allowed"</p>
-                        <p class="text-gray-700">Checked: Contact airline (typically 0-23 kg for infants)</p>
-                    </div>
-                </div>
-
-                <p class="mt-2 text-sm font-semibold">Calculation: (3 × 35 kg) + infant (8-31 kg) = <span class="text-blue-600">~113-136 kg</span></p>
-            </div>
-
-            <!-- Flight 5 Verification -->
-            <div class="mb-6 border-l-4 border-gray-600 pl-4">
-                <h3 class="font-bold text-lg mb-2">5. Istanbul → Buenos Aires (4 passengers) - 48 kg cabin only</h3>
-                <p class="text-sm mb-2"><strong>Source:</strong> <a href="#" onclick="openPDF('Istambul - Buenos Aires Baggage Allowed Version 1.png')" class="pdf-link">Istambul - Buenos Aires Baggage Allowed Version 1.png</a></p>
-
-                <div class="bg-gray-50 p-3 rounded text-sm space-y-2">
-                    <div>
-                        <p class="font-semibold">Checked baggage (for each passenger):</p>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Miguel Lemos: <strong>"null kg maximum"</strong></li>
-                            <li>Stanislav Viazova: <strong>"0 kg maximum"</strong></li>
-                            <li>Anastasiia Viazova: <strong>"null kg maximum"</strong></li>
-                            <li>Georgii Viazov: <strong>"null kg maximum"</strong></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="font-semibold">Cabin baggage:</p>
-                        <p class="text-gray-700 italic">"All passengers: <strong>8 kg</strong> 1 piece + 1 personal item"</p>
-                        <p class="text-gray-700 italic">"Maximum weight of an item of cabin baggage: <strong>8kg</strong>"</p>
-                        <p class="text-gray-700">Personal item: 4 kg (Turkish Airlines standard)</p>
-                    </div>
-                </div>
-
-                <p class="mt-2 text-sm font-semibold">Calculation: 4 passengers × 12 kg (8+4) = <span class="text-gray-600">48 kg total cabin</span></p>
-                <p class="mt-1 text-sm text-gray-600">This is a Basic Economy fare with no checked baggage included.</p>
-            </div>
-
-            <!-- Summary -->
-            <div class="mt-8 bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                <h3 class="font-bold text-lg mb-2">End-to-End Verification: 48 kg Maximum</h3>
-                <div class="text-sm space-y-2">
-                    <p><strong>Why 48 kg is the limiting factor:</strong></p>
-                    <ol class="list-decimal list-inside space-y-1 text-gray-700">
-                        <li>Istanbul → Buenos Aires has <strong>NO checked baggage</strong> (0 kg - must purchase separately)</li>
-                        <li>Only <strong>cabin baggage allowed:</strong> 48 kg total (4 passengers × 12 kg each)</li>
-                        <li>This is the <strong>most restrictive segment</strong> for weight capacity</li>
-                    </ol>
-                    <p class="mt-3 font-semibold">Conclusion: Unless you purchase additional checked baggage for IST→EZE, the maximum you can bring is <span class="text-blue-600">48 kg total</span> for all 4 passengers.</p>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="border-t-2 border-gray-300 pt-6 mt-12 text-sm text-gray-600 wsj-body">
-            <p class="mb-2">📋 All documents are available for viewing and cached locally after first visit for offline access.</p>
-            <p class="mt-4 text-xs text-gray-500">Generated from travel documents • Data verified from official e-tickets</p>
+        <footer class="content-section p-6 text-center text-sm text-gray-600 fade-in" style="animation-delay: 0.5s">
+            <p>Generated with ❤️ by Claude Code</p>
+            <p class="mt-2">Have a wonderful journey! 🌍✈️</p>
         </footer>
+
     </div>
 
-    <!-- IndexedDB PDF Caching Script -->
     <script>
-        // IndexedDB setup for offline PDF storage
-        const DB_NAME = 'TravelDocsDB';
-        const DB_VERSION = 1;
-        const STORE_NAME = 'pdfs';
+        // Initialize map centered on the journey route
+        const map = L.map('map', {
+            zoomControl: false,
+            attributionControl: true,
+            scrollWheelZoom: true,
+            dragging: true
+        }).setView([45, 25], 4);
 
-        let db;
+        // Add OpenStreetMap tiles - using a calming style
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            opacity: 0.7
+        }).addTo(map);
 
-        // Initialize IndexedDB
-        function initDB() {
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open(DB_NAME, DB_VERSION);
+        // Define journey points
+        const journeyPoints = [
+            { name: 'Copenhagen', coords: [55.6761, 12.5683], color: '#3b82f6' },
+            { name: 'Kazan', coords: [55.8304, 49.0661], color: '#8b5cf6' },
+            { name: 'Tbilisi', coords: [41.7151, 44.8271], color: '#06b6d4' },
+            { name: 'Istanbul', coords: [41.0082, 28.9784], color: '#10b981' },
+            { name: 'Buenos Aires', coords: [-34.6037, -58.3816], color: '#f59e0b' }
+        ];
 
-                request.onerror = () => reject(request.error);
-                request.onsuccess = () => {
-                    db = request.result;
-                    resolve(db);
-                };
+        // Add markers for each location
+        journeyPoints.forEach(point => {
+            const marker = L.circleMarker(point.coords, {
+                radius: 8,
+                fillColor: point.color,
+                color: '#fff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
 
-                request.onupgradeneeded = (event) => {
-                    const db = event.target.result;
-                    if (!db.objectStoreNames.contains(STORE_NAME)) {
-                        db.createObjectStore(STORE_NAME, { keyPath: 'filename' });
-                    }
-                };
-            });
+            marker.bindPopup(`<b>${point.name}</b>`);
+        });
+
+        // Draw flight paths
+        const flightPaths = [
+            { from: 0, to: 2, color: '#3b82f6' },  // Copenhagen → Tbilisi
+            { from: 1, to: 2, color: '#8b5cf6' },  // Kazan → Tbilisi
+            { from: 2, to: 3, color: '#06b6d4' },  // Tbilisi → Istanbul
+            { from: 3, to: 4, color: '#10b981' }   // Istanbul → Buenos Aires
+        ];
+
+        flightPaths.forEach(path => {
+            const line = L.polyline([
+                journeyPoints[path.from].coords,
+                journeyPoints[path.to].coords
+            ], {
+                color: path.color,
+                weight: 2,
+                opacity: 0.6,
+                dashArray: '10, 10'
+            }).addTo(map);
+        });
+
+        // Collapsible sections functionality
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId + '-content');
+            const chevron = document.getElementById(sectionId + '-chevron');
+
+            content.classList.toggle('active');
+            chevron.classList.toggle('rotate');
         }
 
-        // Store PDF in IndexedDB
-        async function storePDF(filename, blob) {
-            const transaction = db.transaction([STORE_NAME], 'readwrite');
-            const store = transaction.objectStore(STORE_NAME);
+        // Smooth scroll reveal for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-            return new Promise((resolve, reject) => {
-                const request = store.put({ filename, blob, timestamp: Date.now() });
-                request.onsuccess = () => resolve();
-                request.onerror = () => reject(request.error);
-            });
-        }
-
-        // Retrieve PDF from IndexedDB
-        async function getPDF(filename) {
-            const transaction = db.transaction([STORE_NAME], 'readonly');
-            const store = transaction.objectStore(STORE_NAME);
-
-            return new Promise((resolve, reject) => {
-                const request = store.get(filename);
-                request.onsuccess = () => resolve(request.result?.blob);
-                request.onerror = () => reject(request.error);
-            });
-        }
-
-        // Open PDF (from cache or fetch and cache)
-        async function openPDF(filename) {
-            try {
-                // Try to get from cache first
-                let blob = await getPDF(filename);
-
-                // If not in cache, fetch and store
-                if (!blob) {
-                    console.log(`Fetching ${filename}...`);
-
-                    // Try to fetch the file
-                    const encodedFilename = encodeURIComponent(filename);
-
-                    try {
-                        const response = await fetch(encodedFilename);
-                        if (!response.ok) {
-                            throw new Error(`HTTP ${response.status}`);
-                        }
-                        blob = await response.blob();
-                        await storePDF(filename, blob);
-                        console.log(`${filename} cached for offline use`);
-                    } catch (fetchError) {
-                        // If fetch fails (e.g., file:// protocol), try to open directly
-                        console.warn(`Fetch failed for ${filename}, opening directly:`, fetchError);
-                        const directUrl = encodedFilename;
-                        window.open(directUrl, '_blank');
-                        return;
-                    }
-                } else {
-                    console.log(`${filename} loaded from cache`);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
+            });
+        }, observerOptions);
 
-                // Open PDF from blob in new tab
-                const url = URL.createObjectURL(blob);
-                window.open(url, '_blank');
-
-                // Clean up the URL after a delay
-                setTimeout(() => URL.revokeObjectURL(url), 100);
-
-            } catch (error) {
-                console.error('Error opening PDF:', error);
-                // Fallback: try to open the file directly
-                const encodedFilename = encodeURIComponent(filename);
-                window.open(encodedFilename, '_blank');
-            }
-        }
-
-        // Pre-cache all PDFs on page load
-        async function preCachePDFs() {
-            const pdfs = [
-                'Miguel Copenhagen - Tblisi.pdf',
-                'Anastasia Kazan - Tblisi E-Ticket.pdf',
-                'Georgii Kazan - Tblisi E-Ticket.pdf',
-                'Leonid Kazan - Tblisi E-Ticket.pdf',
-                'Stanislav Kazan - Tblisi E-Ticket .pdf',
-                'Leonid Tblisi - Kazan.pdf',
-                'Tblisi - Istambul.pdf',
-                'Tblisi - Istambul Baggage Allowed Version 1.png',
-                'Istambul - Buenos Aires.pdf',
-                'Istambul - Buenos Aires Baggage Allowed Version 1.png'
-            ];
-
-            // Check if we're running from file:// protocol
-            const isLocalFile = window.location.protocol === 'file:';
-
-            if (isLocalFile) {
-                console.log('Running from local file:// - caching disabled. PDFs will open directly.');
-                console.log('Deploy to GitHub Pages or a web server for full offline caching support.');
-                return;
-            }
-
-            console.log('Pre-caching PDFs for offline use...');
-
-            for (const pdf of pdfs) {
-                try {
-                    const cached = await getPDF(pdf);
-                    if (!cached) {
-                        const encodedPdf = encodeURIComponent(pdf);
-                        const response = await fetch(encodedPdf);
-                        if (response.ok) {
-                            const blob = await response.blob();
-                            await storePDF(pdf, blob);
-                            console.log(`✓ Cached: ${pdf}`);
-                        } else {
-                            console.warn(`⚠ Could not fetch ${pdf}: HTTP ${response.status}`);
-                        }
-                    } else {
-                        console.log(`✓ Already cached: ${pdf}`);
-                    }
-                } catch (error) {
-                    console.warn(`⚠ Could not cache ${pdf}:`, error.message);
-                }
-            }
-
-            console.log('PDF caching complete. Page ready for offline use!');
-        }
-
-        // Initialize on page load
-        (async () => {
-            try {
-                await initDB();
-                console.log('IndexedDB initialized');
-                preCachePDFs();
-            } catch (error) {
-                console.error('Failed to initialize IndexedDB:', error);
-            }
-        })();
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
