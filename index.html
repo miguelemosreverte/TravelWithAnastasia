@@ -26,25 +26,17 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.3;
+            opacity: 0.25;
         }
 
         #scrolling-map-tiles {
             width: 100%;
-            height: 4000px; /* Tall enough for scrolling */
-            background-image:
-                url('https://tile.openstreetmap.org/8/135/87.png'),
-                url('https://tile.openstreetmap.org/8/136/87.png'),
-                url('https://tile.openstreetmap.org/8/135/88.png'),
-                url('https://tile.openstreetmap.org/8/136/88.png');
-            background-repeat: repeat-y;
-            background-size: 50% auto;
-            background-position:
-                0 0,
-                50% 0,
-                0 256px,
-                50% 256px;
-            filter: blur(1px);
+            min-height: 5000px;
+            background-repeat: no-repeat;
+            filter: blur(0.5px);
+            background-size: auto;
+            display: flex;
+            justify-content: center;
         }
 
         /* Hero map section - fixed height */
@@ -148,9 +140,33 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
             border: 3px solid #fff;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        .dot-copenhagen {
+            background: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        .dot-kazan {
+            background: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+        }
+
+        .dot-tbilisi {
+            background: #06b6d4;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.3);
+        }
+
+        .dot-istanbul {
+            background: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+        }
+
+        .dot-buenosaires {
+            background: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
         }
 
         /* Typography */
@@ -237,7 +253,7 @@
                 <!-- Flight 1: Miguel Copenhagen → Tbilisi -->
                 <div class="flight-card p-6 mb-6 rounded-lg">
                     <div class="flex items-start gap-4">
-                        <div class="timeline-dot mt-1"></div>
+                        <div class="timeline-dot dot-copenhagen mt-1"></div>
                         <div class="flex-1">
                             <h3 class="text-2xl font-bold text-gray-800 mb-2">1. Copenhagen → Tbilisi</h3>
                             <p class="text-sm text-gray-600 mb-3">October 17-18, 2025</p>
@@ -263,7 +279,7 @@
                 <!-- Flight 2: Kazan → Tbilisi -->
                 <div class="flight-card p-6 mb-6 rounded-lg">
                     <div class="flex items-start gap-4">
-                        <div class="timeline-dot mt-1"></div>
+                        <div class="timeline-dot dot-kazan mt-1"></div>
                         <div class="flex-1">
                             <h3 class="text-2xl font-bold text-gray-800 mb-2">2. Kazan → Tbilisi</h3>
                             <p class="text-sm text-gray-600 mb-3">October 18, 2025</p>
@@ -276,12 +292,12 @@
                                     <p class="text-sm text-gray-600 mt-2">Passengers: Anastasia, Georgii, Leonid, Stanislav</p>
                                 </div>
                                 <div class="bg-white bg-opacity-70 p-3 rounded">
-                                    <p class="text-sm font-semibold text-gray-700 mb-2">🧳 Baggage (After Upgrades)</p>
+                                    <p class="text-sm font-semibold text-gray-700 mb-2">🧳 Baggage (Base Allowances)</p>
                                     <p class="text-sm text-gray-600">Leonid: 5 kg cabin</p>
-                                    <p class="text-sm text-green-600">Anastasia: 10 kg cabin ✓</p>
-                                    <p class="text-sm text-green-600">Georgii: 10 kg cabin ✓</p>
-                                    <p class="text-sm text-gray-600">Stanislav: 10 kg cabin</p>
-                                    <p class="text-sm font-bold text-gray-800 mt-2">Total: 35 kg</p>
+                                    <p class="text-sm text-gray-600">Anastasia: 5 kg cabin</p>
+                                    <p class="text-sm text-gray-600">Georgii: 5 kg cabin</p>
+                                    <p class="text-sm text-gray-600">Stanislav: 10 kg checked</p>
+                                    <p class="text-sm font-bold text-gray-800 mt-2">Total: 25 kg</p>
                                 </div>
                             </div>
                         </div>
@@ -291,7 +307,7 @@
                 <!-- Flight 3: Leonid Return -->
                 <div class="flight-card p-6 mb-6 rounded-lg opacity-70">
                     <div class="flex items-start gap-4">
-                        <div class="timeline-dot mt-1 opacity-50"></div>
+                        <div class="timeline-dot dot-tbilisi mt-1 opacity-50"></div>
                         <div class="flex-1">
                             <h3 class="text-2xl font-bold text-gray-800 mb-2">3. Tbilisi → Kazan (Leonid Return)</h3>
                             <p class="text-sm text-gray-600 mb-3">October 25, 2025</p>
@@ -305,7 +321,7 @@
                 <!-- Flight 4: Tbilisi → Istanbul -->
                 <div class="flight-card p-6 mb-6 rounded-lg">
                     <div class="flex items-start gap-4">
-                        <div class="timeline-dot mt-1"></div>
+                        <div class="timeline-dot dot-tbilisi mt-1"></div>
                         <div class="flex-1">
                             <h3 class="text-2xl font-bold text-gray-800 mb-2">4. Tbilisi → Istanbul</h3>
                             <p class="text-sm text-gray-600 mb-3">November 20, 2025</p>
@@ -331,7 +347,7 @@
                 <!-- Flight 5: Istanbul → Buenos Aires -->
                 <div class="flight-card p-6 mb-6 rounded-lg">
                     <div class="flex items-start gap-4">
-                        <div class="timeline-dot mt-1"></div>
+                        <div class="timeline-dot dot-istanbul mt-1"></div>
                         <div class="flex-1">
                             <h3 class="text-2xl font-bold text-gray-800 mb-2">5. Istanbul → Buenos Aires</h3>
                             <p class="text-sm text-gray-600 mb-3">November 21, 2025</p>
@@ -347,8 +363,8 @@
                                     <p class="text-sm font-semibold text-gray-700 mb-2">🧳 Baggage</p>
                                     <p class="text-sm text-gray-600">Checked: Not included (Basic Economy)</p>
                                     <p class="text-sm text-amber-600 font-bold">Cabin: 44 kg TOTAL LIMIT</p>
-                                    <p class="text-sm text-gray-600">From Kazan: 35 kg</p>
-                                    <p class="text-sm text-gray-600">Miguel: 9 kg remaining</p>
+                                    <p class="text-sm text-gray-600">From Kazan: 25 kg</p>
+                                    <p class="text-sm text-gray-600">Miguel: 19 kg remaining</p>
                                     <p class="text-sm text-green-600">🐕 Pet: TRY 34,727</p>
                                 </div>
                             </div>
@@ -357,11 +373,11 @@
                 </div>
             </section>
 
-            <!-- Baggage Optimization - Collapsible -->
+            <!-- Baggage Information - Collapsible -->
             <section class="content-section p-8 mb-8 fade-in" style="animation-delay: 0.2s">
                 <div class="collapsible-header p-4 rounded-lg" onclick="toggleSection('baggage')">
                     <div class="flex justify-between items-center">
-                        <h2 class="section-title text-2xl">🎯 Baggage Optimization Strategy</h2>
+                        <h2 class="section-title text-2xl">🧳 Baggage Summary</h2>
                         <svg class="chevron w-6 h-6 text-blue-600" id="baggage-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
@@ -369,43 +385,25 @@
                 </div>
                 <div class="collapsible-content" id="baggage-content">
                     <div class="p-4 mt-4">
-                        <div class="bg-green-50 p-4 rounded-lg mb-4">
-                            <h3 class="font-bold text-lg mb-3">✅ WHAT TO PURCHASE: Red Wings Baggage Upgrades</h3>
-                            <p class="mb-2 font-semibold">Purchase exactly 2 upgrades:</p>
-                            <p class="mb-2">Select <strong>"Aumento del equipaje de mano"</strong> (10 kg upgrade) for:</p>
-                            <ol class="list-decimal list-inside ml-4 mb-3">
-                                <li>Anastasia - Upgrade from 5 kg to 10 kg</li>
-                                <li>Georgii - Upgrade from 5 kg to 10 kg</li>
-                            </ol>
-                            <div class="bg-amber-50 p-3 rounded mb-3">
-                                <p class="font-semibold text-sm mb-1">Do NOT upgrade:</p>
-                                <ul class="text-sm">
-                                    <li>• Stanislav (already has 10 kg as infant)</li>
-                                    <li>• Leonid (stays at 5 kg)</li>
-                                </ul>
-                            </div>
-                            <p class="font-bold">Cost: ~3,000 ₽ (2 passengers × ~1,500 ₽ each)</p>
-                        </div>
-
                         <div class="bg-blue-50 p-4 rounded-lg mb-4">
                             <h3 class="font-bold text-lg mb-3">📊 Final Baggage Distribution</h3>
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <p class="font-semibold mb-2">Red Wings KZN→TBS (after upgrades):</p>
+                                    <p class="font-semibold mb-2">Red Wings KZN→TBS (base allowances):</p>
                                     <ul class="text-sm space-y-1">
-                                        <li>• Leonid: 1 bag × 5 kg</li>
-                                        <li>• Anastasia: 1 bag × 10 kg ✅</li>
-                                        <li>• Georgii: 1 bag × 10 kg ✅</li>
-                                        <li>• Stanislav: 1 bag × 10 kg</li>
-                                        <li class="font-bold">Total: 4 bags, 35 kg</li>
+                                        <li>• Leonid: 1 bag × 5 kg cabin</li>
+                                        <li>• Anastasia: 1 bag × 5 kg cabin</li>
+                                        <li>• Georgii: 1 bag × 5 kg cabin</li>
+                                        <li>• Stanislav: 1 bag × 10 kg checked</li>
+                                        <li class="font-bold">Total: 4 bags, 25 kg</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <p class="font-semibold mb-2">Turkish Airlines (all flights):</p>
+                                    <p class="font-semibold mb-2">Turkish Airlines IST→EZE:</p>
                                     <ul class="text-sm space-y-1">
-                                        <li>• Bags from Kazan: 35 kg</li>
-                                        <li>• Miguel's bags: 9 kg</li>
-                                        <li class="font-bold text-green-600">✅ Total: 44 kg (exactly at limit)</li>
+                                        <li>• Bags from Kazan: 25 kg</li>
+                                        <li>• Miguel's bags: 19 kg</li>
+                                        <li class="font-bold text-green-600">✅ Total: 44 kg (at limit)</li>
                                     </ul>
                                 </div>
                             </div>
@@ -413,23 +411,11 @@
 
                         <div class="bg-purple-50 p-4 rounded-lg">
                             <h3 class="font-bold text-lg mb-3">⚠️ Important: Bag Size Restrictions</h3>
-                            <p class="mb-3 text-sm">Red Wings 10 kg upgrade allows <strong>55×40×25 cm</strong> (matches standard cabin roller size)</p>
-                            <div class="grid md:grid-cols-2 gap-3">
-                                <div class="bg-green-50 p-3 rounded">
-                                    <p class="font-semibold text-sm mb-2">✅ Will work (with 10 kg upgrade):</p>
-                                    <ul class="text-xs space-y-1">
-                                        <li>• Standard cabin-sized rollers (up to 55×40×25 cm)</li>
-                                        <li>• Backpacks within dimensions</li>
-                                        <li>• Soft duffel bags</li>
-                                    </ul>
-                                </div>
-                                <div class="bg-red-50 p-3 rounded">
-                                    <p class="font-semibold text-sm mb-2">❌ Will NOT work:</p>
-                                    <ul class="text-xs space-y-1">
-                                        <li>• 58 cm suitcase (ABS plastic 55L) - exceeds by 3 cm</li>
-                                        <li>• Large roller suitcases (70-80 cm)</li>
-                                    </ul>
-                                </div>
+                            <p class="mb-3 text-sm"><strong>Red Wings base allowance (5 kg cabin):</strong> 40×30×20 cm</p>
+                            <p class="mb-3 text-sm"><strong>Turkish Airlines:</strong> Carry-on 55×40×23 cm + Personal item 40×30×15 cm</p>
+                            <div class="bg-amber-50 p-3 rounded">
+                                <p class="font-semibold text-sm mb-2">📝 Note:</p>
+                                <p class="text-sm">Red Wings cabin bags must fit 40×30×20 cm size restriction. Consider soft bags, backpacks, or compression bags for this segment.</p>
                             </div>
                         </div>
                     </div>
@@ -468,10 +454,6 @@
                             </div>
                         </div>
 
-                        <div class="mt-4 p-3 bg-amber-50 rounded">
-                            <p class="text-sm font-semibold">Note:</p>
-                            <p class="text-sm">Red Wings does not allow pets in cabin, so Scooby Doo cannot travel on Kazan→Tbilisi segment.</p>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -578,6 +560,62 @@
         // Fit bounds to show all markers
         const bounds = L.latLngBounds(journeyPoints.map(p => p.coords));
         heroMap.fitBounds(bounds, { padding: [50, 50] });
+
+        // Generate scrolling background tiles for Yoshkar-Ola and Cheboksary region
+        function generateScrollingMapTiles() {
+            const scrollingTilesDiv = document.getElementById('scrolling-map-tiles');
+            const contentDiv = document.getElementById('content');
+            const zoom = 10;
+
+            // Get the actual content height to match tile coverage
+            const contentHeight = contentDiv.offsetHeight;
+
+            // Area covering Yoshkar-Ola (56.6312°N, 47.8744°E) to Cheboksary (56.1439°N, 47.2489°E)
+            // At zoom 10, we need more tiles
+            // Calculate tiles needed based on screen width and content height
+            const tileSize = 256;
+            const screenWidth = window.innerWidth;
+            const tilesWide = Math.ceil(screenWidth / tileSize) + 2; // Extra tiles for coverage
+            const tilesHigh = Math.ceil(contentHeight / tileSize) + 1;
+
+            // Starting tile coordinates at zoom 10 for Yoshkar-Ola/Cheboksary area
+            const startX = 616; // X coordinate at zoom 10
+            const startY = 312; // Y coordinate at zoom 10
+
+            let backgroundImages = [];
+            let backgroundPositions = [];
+
+            // Create a grid of unique tiles (not repeating)
+            for (let row = 0; row < tilesHigh; row++) {
+                for (let col = 0; col < tilesWide; col++) {
+                    const x = startX + col;
+                    const y = startY + row;
+                    const tileUrl = `https://tile.openstreetmap.org/${zoom}/${x}/${y}.png`;
+
+                    backgroundImages.push(`url('${tileUrl}')`);
+
+                    // Position each tile in a grid
+                    const xPos = (col * tileSize);
+                    const yPos = (row * tileSize);
+                    backgroundPositions.push(`${xPos}px ${yPos}px`);
+                }
+            }
+
+            scrollingTilesDiv.style.backgroundImage = backgroundImages.join(', ');
+            scrollingTilesDiv.style.backgroundPosition = backgroundPositions.join(', ');
+            scrollingTilesDiv.style.backgroundSize = `${tileSize}px ${tileSize}px`;
+            scrollingTilesDiv.style.minHeight = `${contentHeight}px`;
+        }
+
+        // Initialize scrolling map tiles after content loads
+        window.addEventListener('load', () => {
+            setTimeout(generateScrollingMapTiles, 100);
+        });
+
+        // Regenerate tiles on window resize
+        window.addEventListener('resize', () => {
+            setTimeout(generateScrollingMapTiles, 100);
+        });
 
         // Collapsible sections functionality
         function toggleSection(sectionId) {

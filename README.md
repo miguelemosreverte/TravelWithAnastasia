@@ -231,7 +231,7 @@ After calling Turkish Airlines customer service, we received confirmed baggage a
 - Breakdown: 2 adults × 12 kg + 2 children × 10 kg = 44 kg
 - No checked baggage included (Basic Economy)
 
-### 🎯 FINAL DEFINITIVE BAGGAGE PLAN
+### 🎯 FINAL BAGGAGE PLAN
 
 **Passenger Clarification:**
 - **Kazan→Tbilisi:** 4 passengers (Leonid, Anastasia, Georgii, Stanislav)
@@ -240,76 +240,33 @@ After calling Turkish Airlines customer service, we received confirmed baggage a
 
 ---
 
-### ✅ WHAT TO PURCHASE: Red Wings Baggage Upgrades
-
-**Purchase exactly 2 upgrades:**
-
-Select **"Aumento del equipaje de mano"** (10 kg upgrade) for:
-
-1. **Anastasia** - Upgrade from 5 kg to 10 kg
-2. **Georgii** - Upgrade from 5 kg to 10 kg
-
-**Do NOT upgrade:**
-- Stanislav (already has 10 kg as infant - no upgrade needed)
-- Leonid (stays at 5 kg - no upgrade needed)
-
-**Cost: ~3,000 ₽** (2 passengers × ~1,500 ₽ each)
-
----
-
 ### 📊 Final Baggage Distribution
 
-**Red Wings KZN→TBS (after upgrades):**
-- Leonid: 1 bag × 5 kg
-- Anastasia: 1 bag × 10 kg ✅
-- Georgii: 1 bag × 10 kg ✅
-- Stanislav: 1 bag × 10 kg
-- **Total: 4 bags, 35 kg**
+**Red Wings KZN→TBS (base allowances - no upgrades purchased):**
+- Leonid: 1 bag × 5 kg cabin
+- Anastasia: 1 bag × 5 kg cabin
+- Georgii: 1 bag × 5 kg cabin
+- Stanislav: 1 bag × 10 kg checked
+- **Total: 4 bags, 25 kg**
 
 **Turkish Airlines TBS→IST and IST→EZE:**
-- Bags from Kazan: 35 kg (4 bags)
-- Miguel's bags: 9 kg
-- **Total: 44 kg** (exactly at limit ✅)
-
-**Physical management:**
-- Anastasia manages 3 bags: hers (10 kg) + Georgii's (10 kg) + Stanislav's (10 kg) = **30 kg total**
-- Each bag registered to its respective passenger at check-in
-- Each bag must be ≤55×40×25 cm
-
-**Why not checked baggage?**
-Checked baggage on Red Wings cannot be carried as cabin on Turkish Airlines flights. The upgrade option ensures consistent cabin bags throughout.
+- Bags from Kazan: 25 kg
+- Miguel's bags: 19 kg
+- **Total: 44 kg** (at limit ✅)
 
 ### Important: Bag Size Restrictions
 
-**Note:** 4 passengers travel Kazan→Tbilisi (Leonid, Anastasia, Georgii, Stanislav). Leonid stays in Tbilisi for one week, but his bag continues with the family to Buenos Aires.
-
-**Critical correction:** The Red Wings 10 kg upgrade ALSO increases size limits!
-
-**Red Wings basic (5 kg):**
+**Red Wings base allowance (5 kg cabin):**
 - Maximum: 40×30×20 cm
-
-**Red Wings WITH 10 kg upgrade:**
-- Maximum: **55×40×25 cm** ✅
-- This matches standard cabin roller size!
 
 **Turkish Airlines:**
 - Carry-on: 55×40×23 cm
 - Personal item: 40×30×15 cm
 
-**With the 10 kg upgrade, size restrictions align:**
-
-✅ **Will work (with 10 kg upgrade):**
-- **Standard cabin-sized rollers** up to 55×40×25 cm
-- **Backpacks** within dimensions
-- **Soft duffel bags**
-
-❌ **Will NOT work:**
-- **58 cm suitcase** (like the ABS plastic suitcase mentioned) - exceeds 55 cm limit by 3 cm
-- Large roller suitcases (70-80 cm height)
-
-**Important:** The 58 cm ABS plastic suitcase (55L) that Anastasia wants to bring is **too large** for Red Wings even with the upgrade. Maximum is 55 cm on longest dimension.
-
-![Red Wings Baggage Upgrade Options](red-wings-baggage-upgrade-menu.png)
+**Packing Strategy:**
+- Red Wings requires smaller bags (40×30×20 cm) - consider soft bags, backpacks, or compression bags
+- Standard hardshell suitcases will NOT fit Red Wings size restrictions
+- Turkish Airlines allows more generous sizing for the remaining segments
 
 ---
 
