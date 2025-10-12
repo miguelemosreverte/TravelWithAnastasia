@@ -22,7 +22,9 @@
 
         /* Book container - 2-page spread */
         #book-container {
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100vh;
             display: flex;
@@ -33,9 +35,9 @@
 
         #book {
             position: relative;
-            width: 90vw;
+            width: 95vw;
             max-width: 1800px;
-            height: 90vh;
+            height: 95vh;
             display: flex;
             box-shadow: 0 10px 50px rgba(0,0,0,0.3);
         }
@@ -65,8 +67,8 @@
                 rgba(252, 252, 248, 0.98) 100%);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            padding: 2rem;
+            overflow: auto;
+            padding: 1.5rem;
             box-sizing: border-box;
             position: relative;
         }
@@ -81,53 +83,6 @@
             box-shadow: inset 30px 0 30px -30px rgba(0,0,0,0.2);
         }
 
-        /* Page navigation controls */
-        .page-nav {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            z-index: 1000;
-            background: rgba(255,255,255,0.9);
-            padding: 15px 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        .page-nav button {
-            background: #3b82f6;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .page-nav button:hover:not(:disabled) {
-            background: #2563eb;
-            transform: scale(1.1);
-        }
-
-        .page-nav button:disabled {
-            background: #cbd5e1;
-            cursor: not-allowed;
-        }
-
-        .page-indicator {
-            font-family: Georgia, serif;
-            font-size: 14px;
-            color: #64748b;
-            min-width: 60px;
-            text-align: center;
-        }
 
         /* Page spread container */
         .page-spread {
@@ -157,48 +112,6 @@
             }
         }
 
-        /* Book cover and page-turn effect */
-        #book-cover {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(254, 254, 250, 1) 0%, rgba(252, 252, 248, 1) 100%);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform-origin: left center;
-            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-            box-shadow: 2px 0 15px rgba(0,0,0,0.3);
-        }
-
-        #book-cover.open {
-            transform: perspective(2000px) rotateY(-160deg);
-            pointer-events: none;
-        }
-
-        .cover-content {
-            text-align: center;
-            padding: 2rem;
-            max-width: 800px;
-        }
-
-        .open-book-hint {
-            position: absolute;
-            right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            animation: pulse 2s infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateX(10px); }
-        }
 
         .page-content {
             opacity: 1;
@@ -389,24 +302,6 @@
     </style>
 </head>
 <body>
-    <!-- Book Cover -->
-    <div id="book-cover">
-        <div class="cover-content">
-            <h1 class="text-5xl sm:text-7xl font-bold mb-6" style="color: #1e293b; font-family: Georgia, serif;">Family Travel Journey</h1>
-            <p class="text-2xl mb-4" style="color: #64748b;">Copenhagen → Tbilisi → Istanbul → Buenos Aires</p>
-            <p class="text-xl mb-8" style="color: #94a3b8;">October - November 2025</p>
-            <div style="max-width: 600px; height: 300px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                <div id="cover-map" style="width: 100%; height: 100%;"></div>
-            </div>
-        </div>
-        <div class="open-book-hint" onclick="openBook()">
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6" stroke="#3b82f6"/>
-            </svg>
-            <p id="open-hint-text" style="text-align: center; margin-top: 8px; font-size: 14px; color: #3b82f6;">Click to open</p>
-        </div>
-    </div>
-
     <!-- Scrolling background wrapper -->
     <div id="content-wrapper" class="page-content">
         <!-- Scrolling map background -->
@@ -420,11 +315,11 @@
                 <!-- Page Spread 1: Hero Map + Journey Start -->
                 <div class="page-spread active" data-spread="1">
                     <div class="book-page left">
-                        <div id="hero-map" style="width: 100%; height: 60vh; border-radius: 4px; margin-bottom: 2rem;"></div>
+                        <div id="hero-map" style="width: 100%; height: 70%; border-radius: 4px; margin-bottom: 1rem;"></div>
                         <div style="text-align: center;">
-                            <h1 class="text-4xl font-bold mb-2" style="color: #1e293b;">Family Travel Journey</h1>
-                            <p class="text-xl" style="color: #64748b;">Copenhagen → Tbilisi → Istanbul → Buenos Aires</p>
-                            <p style="color: #94a3b8;">October - November 2025</p>
+                            <h1 class="text-3xl font-bold mb-2" style="color: #1e293b;">Family Travel Journey</h1>
+                            <p class="text-lg" style="color: #64748b;">Copenhagen → Tbilisi → Istanbul → Buenos Aires</p>
+                            <p class="text-sm" style="color: #94a3b8;">October - November 2025</p>
                         </div>
                     </div>
                     <div class="book-page right" id="page-1-right">
@@ -680,149 +575,9 @@
             </div>
         </div>
 
-        <!-- Page Navigation -->
-        <div class="page-nav">
-            <button id="prev-page" onclick="previousPage()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 18l-6-6 6-6"/>
-                </svg>
-            </button>
-            <span class="page-indicator" id="page-indicator">1 / 3</span>
-            <button id="next-page" onclick="nextPage()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
-            </button>
-        </div>
-
     </div>
 
     <script>
-        // Initialize cover map (shown on book cover)
-        const coverMap = L.map('cover-map', {
-            zoomControl: false,
-            attributionControl: false,
-            scrollWheelZoom: false,
-            dragging: false,
-            doubleClickZoom: false,
-            touchZoom: false
-        }).setView([40, 20], 2);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '',
-            opacity: 1
-        }).addTo(coverMap);
-
-        // Add simplified journey markers to cover map
-        const coverJourneyPoints = [
-            { name: 'Copenhagen', coords: [55.6761, 12.5683], color: '#3b82f6' },
-            { name: 'Kazan', coords: [55.8304, 49.0661], color: '#8b5cf6' },
-            { name: 'Tbilisi', coords: [41.7151, 44.8271], color: '#06b6d4' },
-            { name: 'Istanbul', coords: [41.0082, 28.9784], color: '#10b981' },
-            { name: 'Buenos Aires', coords: [-34.6037, -58.3816], color: '#f59e0b' }
-        ];
-
-        // Function to create great circle arc points
-        function createGreatCircle(start, end, numPoints = 50) {
-            const latlngs = [];
-            const lat1 = start[0] * Math.PI / 180;
-            const lon1 = start[1] * Math.PI / 180;
-            const lat2 = end[0] * Math.PI / 180;
-            const lon2 = end[1] * Math.PI / 180;
-
-            for (let i = 0; i <= numPoints; i++) {
-                const fraction = i / numPoints;
-
-                // Great circle interpolation
-                const A = Math.sin((1 - fraction) * 1) / Math.sin(1);
-                const B = Math.sin(fraction * 1) / Math.sin(1);
-
-                const x = A * Math.cos(lat1) * Math.cos(lon1) + B * Math.cos(lat2) * Math.cos(lon2);
-                const y = A * Math.cos(lat1) * Math.sin(lon1) + B * Math.cos(lat2) * Math.sin(lon2);
-                const z = A * Math.sin(lat1) + B * Math.sin(lat2);
-
-                const lat = Math.atan2(z, Math.sqrt(x * x + y * y)) * 180 / Math.PI;
-                const lon = Math.atan2(y, x) * 180 / Math.PI;
-
-                latlngs.push([lat, lon]);
-            }
-            return latlngs;
-        }
-
-        // Draw flight path lines (great circles) on cover map
-        const coverFlightPaths = [
-            { from: 0, to: 2, color: '#3b82f6' },  // Copenhagen → Tbilisi
-            { from: 1, to: 2, color: '#8b5cf6' },  // Kazan → Tbilisi
-            { from: 2, to: 3, color: '#06b6d4' },  // Tbilisi → Istanbul
-            { from: 3, to: 4, color: '#10b981' }   // Istanbul → Buenos Aires
-        ];
-
-        coverFlightPaths.forEach(path => {
-            const arcPoints = createGreatCircle(
-                coverJourneyPoints[path.from].coords,
-                coverJourneyPoints[path.to].coords
-            );
-
-            L.polyline(arcPoints, {
-                color: path.color,
-                weight: 2,
-                opacity: 0.7,
-                dashArray: '5, 5'
-            }).addTo(coverMap);
-        });
-
-        coverJourneyPoints.forEach(point => {
-            L.circleMarker(point.coords, {
-                radius: 6,
-                fillColor: point.color,
-                color: '#fff',
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.9
-            }).addTo(coverMap);
-        });
-
-        const coverBounds = L.latLngBounds(coverJourneyPoints.map(p => p.coords));
-        coverMap.fitBounds(coverBounds, { padding: [30, 30] });
-
-        // Detect mobile vs desktop and update hint text
-        function isMobileDevice() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                   window.innerWidth < 768;
-        }
-
-        if (isMobileDevice()) {
-            document.getElementById('open-hint-text').textContent = 'Swipe left to open';
-        } else {
-            document.getElementById('open-hint-text').textContent = 'Click to open';
-        }
-
-        // Open book function
-        function openBook() {
-            const bookCover = document.getElementById('book-cover');
-            bookCover.classList.add('open');
-        }
-
-        // Swipe detection for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.getElementById('book-cover').addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.getElementById('book-cover').addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            // Swipe left (right to left) - touchEnd is less than touchStart
-            if (touchEndX < touchStartX - 50) {
-                openBook();
-            }
-        }
-
         // Initialize hero map
         const heroMap = L.map('hero-map', {
             zoomControl: false,
@@ -960,18 +715,11 @@
         let currentPage = 1;
         const totalPages = 3;
 
-        function updatePageIndicator() {
-            document.getElementById('page-indicator').textContent = `${currentPage} / ${totalPages}`;
-            document.getElementById('prev-page').disabled = currentPage === 1;
-            document.getElementById('next-page').disabled = currentPage === totalPages;
-        }
-
         function nextPage() {
             if (currentPage < totalPages) {
                 document.querySelector(`.page-spread[data-spread="${currentPage}"]`).classList.remove('active');
                 currentPage++;
                 document.querySelector(`.page-spread[data-spread="${currentPage}"]`).classList.add('active');
-                updatePageIndicator();
             }
         }
 
@@ -980,7 +728,6 @@
                 document.querySelector(`.page-spread[data-spread="${currentPage}"]`).classList.remove('active');
                 currentPage--;
                 document.querySelector(`.page-spread[data-spread="${currentPage}"]`).classList.add('active');
-                updatePageIndicator();
             }
         }
 
@@ -1065,9 +812,6 @@
                 e.preventDefault();
             }
         });
-
-        // Initialize page indicator
-        updatePageIndicator();
     </script>
 </body>
 </html>
