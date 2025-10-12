@@ -318,7 +318,7 @@
             background: rgba(59, 130, 246, 0.7);
         }
 
-        /* Mobile-specific styles - keep 2-page spread, just adjust sizes */
+        /* Mobile-specific styles - rotate book 90 degrees for portrait phones */
         @media (max-width: 768px) {
             /* Reduce background map opacity on mobile */
             #scrolling-background {
@@ -326,8 +326,12 @@
             }
 
             #book {
-                width: 98vw;
-                height: 98vh;
+                /* Rotate 90 degrees and swap dimensions */
+                transform: rotate(90deg);
+                transform-origin: center center;
+                /* Swap width/height because of rotation */
+                width: 98vh;
+                height: 98vw;
                 max-width: none;
                 box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             }
