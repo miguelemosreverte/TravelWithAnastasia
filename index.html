@@ -320,12 +320,16 @@
 
         /* Mobile-specific styles for thin, tall phones */
         @media (max-width: 768px) {
+            /* Reduce background map opacity on mobile */
+            #scrolling-background {
+                opacity: 0.15;
+            }
+
             #book {
                 width: 100vw;
                 height: 100vh;
                 max-width: none;
                 box-shadow: none;
-                flex-direction: column;
             }
 
             .book-page {
@@ -334,9 +338,9 @@
                 height: 100%;
             }
 
-            /* On mobile, show pages stacked and allow individual page navigation */
-            .page-spread {
-                flex-direction: column;
+            /* Book spine hidden on mobile */
+            #book::before {
+                display: none;
             }
 
             .book-page.left,
@@ -346,9 +350,18 @@
                 border: none;
             }
 
-            /* Book spine hidden on mobile */
-            #book::before {
+            /* Hide right page by default on mobile, show only one at a time */
+            .page-spread.active .book-page.right {
                 display: none;
+            }
+
+            /* When mobile-right is active, hide left and show right */
+            .page-spread.active.mobile-show-right .book-page.left {
+                display: none;
+            }
+
+            .page-spread.active.mobile-show-right .book-page.right {
+                display: block;
             }
 
             /* Adjust hero map in first page */
@@ -386,15 +399,6 @@
             .page-footer {
                 padding: 0.5rem 1rem;
                 font-size: 0.65rem;
-            }
-
-            /* Hide one page at a time on mobile - we'll use JS to toggle */
-            .page-spread.active .book-page {
-                display: none;
-            }
-
-            .page-spread.active .book-page.mobile-active {
-                display: block;
             }
         }
     </style>
@@ -844,42 +848,25 @@
         // Page navigation system
         let currentPage = 1;
         const totalPages = 3;
-        let currentMobilePage = 0; // 0 = left, 1 = right
+        let showingRightPage = false; // false = left page, true = right page
         const isMobile = isMobileDevice();
-
-        // Initialize mobile page display
-        function initMobilePages() {
-            if (isMobile) {
-                // Set first left page as active
-                const firstSpread = document.querySelector('.page-spread.active');
-                if (firstSpread) {
-                    const leftPage = firstSpread.querySelector('.book-page.left');
-                    if (leftPage) {
-                        leftPage.classList.add('mobile-active');
-                    }
-                }
-            }
-        }
 
         function nextPage() {
             if (isMobile) {
                 // Mobile: navigate through individual pages
                 const currentSpread = document.querySelector(`.page-spread[data-spread="${currentPage}"]`);
 
-                if (currentMobilePage === 0) {
-                    // Currently on left page, go to right page
-                    currentSpread.querySelector('.book-page.left').classList.remove('mobile-active');
-                    currentSpread.querySelector('.book-page.right').classList.add('mobile-active');
-                    currentMobilePage = 1;
+                if (!showingRightPage) {
+                    // Currently on left page, show right page
+                    currentSpread.classList.add('mobile-show-right');
+                    showingRightPage = true;
                 } else if (currentPage < totalPages) {
                     // Currently on right page, go to next spread's left page
-                    currentSpread.classList.remove('active');
-                    currentSpread.querySelector('.book-page.right').classList.remove('mobile-active');
+                    currentSpread.classList.remove('active', 'mobile-show-right');
                     currentPage++;
                     const nextSpread = document.querySelector(`.page-spread[data-spread="${currentPage}"]`);
                     nextSpread.classList.add('active');
-                    nextSpread.querySelector('.book-page.left').classList.add('mobile-active');
-                    currentMobilePage = 0;
+                    showingRightPage = false;
                 }
             } else {
                 // Desktop: navigate through spreads
@@ -896,20 +883,17 @@
                 // Mobile: navigate through individual pages
                 const currentSpread = document.querySelector(`.page-spread[data-spread="${currentPage}"]`);
 
-                if (currentMobilePage === 1) {
-                    // Currently on right page, go to left page
-                    currentSpread.querySelector('.book-page.right').classList.remove('mobile-active');
-                    currentSpread.querySelector('.book-page.left').classList.add('mobile-active');
-                    currentMobilePage = 0;
+                if (showingRightPage) {
+                    // Currently on right page, show left page
+                    currentSpread.classList.remove('mobile-show-right');
+                    showingRightPage = false;
                 } else if (currentPage > 1) {
                     // Currently on left page, go to previous spread's right page
                     currentSpread.classList.remove('active');
-                    currentSpread.querySelector('.book-page.left').classList.remove('mobile-active');
                     currentPage--;
                     const prevSpread = document.querySelector(`.page-spread[data-spread="${currentPage}"]`);
-                    prevSpread.classList.add('active');
-                    prevSpread.querySelector('.book-page.right').classList.add('mobile-active');
-                    currentMobilePage = 1;
+                    prevSpread.classList.add('active', 'mobile-show-right');
+                    showingRightPage = true;
                 }
             } else {
                 // Desktop: navigate through spreads
@@ -920,9 +904,6 @@
                 }
             }
         }
-
-        // Initialize mobile pages
-        initMobilePages();
 
         // Keyboard navigation (arrow keys)
         document.addEventListener('keydown', (e) => {
