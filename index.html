@@ -19,7 +19,7 @@
             position: relative;
         }
 
-        /* Halftone effect on ink/content - very subtle dots */
+        /* Halftone effect on ink/content - white dots breaking up the ink */
         body::before {
             content: '';
             position: fixed;
@@ -28,12 +28,12 @@
             right: 0;
             bottom: 0;
             background-image:
-                radial-gradient(circle, rgba(255,255,255,0.25) 0.25px, transparent 0.25px);
-            background-size: 1.2px 1.2px;
+                radial-gradient(circle, rgba(255,255,255,0.7) 0.6px, transparent 0.6px);
+            background-size: 2.5px 2.5px;
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: screen;
-            opacity: 0.6;
+            opacity: 1;
         }
 
         /* Scrolling map background container */
@@ -230,9 +230,9 @@
                 </div>
             </section>
 
-            <!-- Main Itinerary & Baggage -->
+            <!-- Main Itinerary -->
             <section class="content-section p-8 mb-8">
-                <h2 class="section-title text-3xl mb-6 pb-4 border-b-2 border-blue-200">📍 Journey Itinerary & Baggage</h2>
+                <h2 class="section-title text-3xl mb-6 pb-4 border-b-2 border-blue-200">📍 Journey Itinerary</h2>
 
                 <!-- Flight 1: Miguel Copenhagen → Tbilisi -->
                 <div class="flight-card p-6 mb-6 rounded-lg">
@@ -355,47 +355,47 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Baggage Information -->
-                <h3 class="section-title text-2xl mb-4 mt-8 pt-8 border-t-2 border-blue-200">🧳 Baggage Summary</h3>
-                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
-                            <h4 class="font-bold text-lg mb-3">📊 Final Baggage Distribution</h4>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <p class="font-semibold mb-2">Red Wings KZN→TBS (base allowances):</p>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• Leonid: 1 bag × 5 kg cabin</li>
-                                        <li>• Anastasia: 1 bag × 5 kg cabin</li>
-                                        <li>• Georgii: 1 bag × 5 kg cabin</li>
-                                        <li>• Stanislav: 1 bag × 10 kg checked</li>
-                                        <li class="font-bold">Total: 4 bags, 25 kg</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <p class="font-semibold mb-2">Turkish Airlines IST→EZE:</p>
-                                    <ul class="text-sm space-y-1">
-                                        <li>• Bags from Kazan: 25 kg</li>
-                                        <li>• Miguel's bags: 19 kg</li>
-                                        <li class="font-bold text-green-600">✅ Total: 44 kg (at limit)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-purple-50 p-4 rounded-lg">
-                            <h4 class="font-bold text-lg mb-3">⚠️ Important: Bag Size Restrictions</h4>
-                            <p class="mb-3 text-sm"><strong>Red Wings base allowance (5 kg cabin):</strong> 40×30×20 cm</p>
-                            <p class="mb-3 text-sm"><strong>Turkish Airlines:</strong> Carry-on 55×40×23 cm + Personal item 40×30×15 cm</p>
-                            <div class="bg-amber-50 p-3 rounded">
-                                <p class="font-semibold text-sm mb-2">📝 Note:</p>
-                                <p class="text-sm">Red Wings cabin bags must fit 40×30×20 cm size restriction. Consider soft bags, backpacks, or compression bags for this segment.</p>
-                            </div>
-                        </div>
             </section>
 
-            <!-- Pet Travel & Travel Information -->
+            <!-- Pet Travel, Baggage & Documents -->
             <section class="content-section p-8 mb-8">
-                <h2 class="section-title text-3xl mb-6 pb-4 border-b-2 border-blue-200">🐕 Pet Travel & Documents</h2>
+                <h2 class="section-title text-3xl mb-6 pb-4 border-b-2 border-blue-200">🧳 Baggage, Pet Travel & Documents</h2>
+
+                <!-- Baggage Information -->
+                <h3 class="section-title text-2xl mb-4">🧳 Baggage Summary</h3>
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                    <h4 class="font-bold text-lg mb-3">📊 Final Baggage Distribution</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold mb-2">Red Wings KZN→TBS (base allowances):</p>
+                            <ul class="text-sm space-y-1">
+                                <li>• Leonid: 1 bag × 5 kg cabin</li>
+                                <li>• Anastasia: 1 bag × 5 kg cabin</li>
+                                <li>• Georgii: 1 bag × 5 kg cabin</li>
+                                <li>• Stanislav: 1 bag × 10 kg checked</li>
+                                <li class="font-bold">Total: 4 bags, 25 kg</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">Turkish Airlines IST→EZE:</p>
+                            <ul class="text-sm space-y-1">
+                                <li>• Bags from Kazan: 25 kg</li>
+                                <li>• Miguel's bags: 19 kg</li>
+                                <li class="font-bold text-green-600">✅ Total: 44 kg (at limit)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 p-4 rounded-lg mb-8">
+                    <h4 class="font-bold text-lg mb-3">⚠️ Important: Bag Size Restrictions</h4>
+                    <p class="mb-3 text-sm"><strong>Red Wings base allowance (5 kg cabin):</strong> 40×30×20 cm</p>
+                    <p class="mb-3 text-sm"><strong>Turkish Airlines:</strong> Carry-on 55×40×23 cm + Personal item 40×30×15 cm</p>
+                    <div class="bg-amber-50 p-3 rounded">
+                        <p class="font-semibold text-sm mb-2">📝 Note:</p>
+                        <p class="text-sm">Red Wings cabin bags must fit 40×30×20 cm size restriction. Consider soft bags, backpacks, or compression bags for this segment.</p>
+                    </div>
+                </div>
 
                 <!-- Pet Travel -->
                 <h3 class="section-title text-2xl mb-4 mt-6">Pet Travel: Scooby Doo</h3>
