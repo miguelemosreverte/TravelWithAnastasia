@@ -1,5 +1,5 @@
 // Service Worker for offline caching
-const CACHE_NAME = 'travel-anastasia-v10';
+const CACHE_NAME = 'travel-anastasia-v11';
 const TILE_CACHE_NAME = 'map-tiles-v1';
 
 // Static assets to cache immediately
@@ -13,7 +13,7 @@ const STATIC_ASSETS = [
     './Stanislav_KZN-TBS_Oct18_2025.pdf',
     './Leonid Tblisi - Kazan.pdf',
     './Tblisi - Istambul.pdf',
-    './Istambul - Buenos Aires.pdf'
+    './Istambul -> Buenos Aires -- Electronic Ticket.pdf'
 ];
 
 // Install event - cache static assets
