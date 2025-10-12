@@ -101,34 +101,6 @@
             padding: 2rem;
         }
 
-        /* Collapsible sections */
-        .collapsible-header {
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.3s ease;
-        }
-
-        .collapsible-header:hover {
-            background: rgba(59, 130, 246, 0.05);
-        }
-
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-
-        .collapsible-content.active {
-            max-height: 5000px;
-        }
-
-        .chevron {
-            transition: transform 0.3s ease;
-        }
-
-        .chevron.rotate {
-            transform: rotate(180deg);
-        }
 
         /* Relaxing color palette */
         .flight-card {
@@ -373,18 +345,9 @@
                 </div>
             </section>
 
-            <!-- Baggage Information - Collapsible -->
+            <!-- Baggage Information -->
             <section class="content-section p-8 mb-8 fade-in" style="animation-delay: 0.2s">
-                <div class="collapsible-header p-4 rounded-lg" onclick="toggleSection('baggage')">
-                    <div class="flex justify-between items-center">
-                        <h2 class="section-title text-2xl">🧳 Baggage Summary</h2>
-                        <svg class="chevron w-6 h-6 text-blue-600" id="baggage-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="collapsible-content" id="baggage-content">
-                    <div class="p-4 mt-4">
+                <h2 class="section-title text-2xl mb-6">🧳 Baggage Summary</h2>
                         <div class="bg-blue-50 p-4 rounded-lg mb-4">
                             <h3 class="font-bold text-lg mb-3">📊 Final Baggage Distribution</h3>
                             <div class="grid md:grid-cols-2 gap-4">
@@ -418,22 +381,11 @@
                                 <p class="text-sm">Red Wings cabin bags must fit 40×30×20 cm size restriction. Consider soft bags, backpacks, or compression bags for this segment.</p>
                             </div>
                         </div>
-                    </div>
-                </div>
             </section>
 
-            <!-- Pet Travel - Collapsible -->
+            <!-- Pet Travel -->
             <section class="content-section p-8 mb-8 fade-in" style="animation-delay: 0.3s">
-                <div class="collapsible-header p-4 rounded-lg" onclick="toggleSection('pet')">
-                    <div class="flex justify-between items-center">
-                        <h2 class="section-title text-2xl">🐕 Pet Travel: Scooby Doo</h2>
-                        <svg class="chevron w-6 h-6 text-blue-600" id="pet-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="collapsible-content" id="pet-content">
-                    <div class="p-4 mt-4">
+                <h2 class="section-title text-2xl mb-6">🐕 Pet Travel: Scooby Doo</h2>
                         <div class="bg-green-100 border-l-4 border-green-600 p-4 mb-4">
                             <p class="font-bold text-lg">✅ Scooby Doo can travel on all Turkish Airlines flights!</p>
                             <p class="text-sm mt-2">Pet: Black and Tan Terrier, 15 kg, Carrier: ~45-46 × 30-35 × 24-25 cm</p>
@@ -453,24 +405,48 @@
                                 <p class="text-sm text-gray-600">Confirmed - Fee: TRY 34,727</p>
                             </div>
                         </div>
-
-                    </div>
-                </div>
             </section>
 
-            <!-- Contact Reference - Collapsible -->
+            <!-- Tickets & Contact Reference -->
             <section class="content-section p-8 mb-8 fade-in" style="animation-delay: 0.4s">
-                <div class="collapsible-header p-4 rounded-lg" onclick="toggleSection('contact')">
-                    <div class="flex justify-between items-center">
-                        <h2 class="section-title text-2xl">📞 Airline Contact Reference</h2>
-                        <svg class="chevron w-6 h-6 text-blue-600" id="contact-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
+                <h2 class="section-title text-2xl mb-6">📄 Tickets & Contact Information</h2>
+
+                <!-- Ticket Links -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-lg mb-3">✈️ E-Tickets</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Flight 1: Copenhagen → Tbilisi</p>
+                            <a href="Miguel Copenhagen - Tblisi.pdf" class="text-blue-600 hover:text-blue-800 text-sm underline">📥 Miguel's Ticket</a>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Flight 2: Kazan → Tbilisi (Oct 18)</p>
+                            <div class="space-y-1">
+                                <a href="Anastasia_KZN-TBS_Oct18_2025.pdf" class="text-blue-600 hover:text-blue-800 text-sm underline block">📥 Anastasia's Ticket</a>
+                                <a href="Georgii_KZN-TBS_Oct18_2025.pdf" class="text-blue-600 hover:text-blue-800 text-sm underline block">📥 Georgii's Ticket</a>
+                                <a href="Leonid_KZN-TBS_Oct18_2025.pdf" class="text-blue-600 hover:text-blue-800 text-sm underline block">📥 Leonid's Ticket</a>
+                                <a href="Stanislav_KZN-TBS_Oct18_2025.pdf" class="text-blue-600 hover:text-blue-800 text-sm underline block">📥 Stanislav's Ticket</a>
+                            </div>
+                        </div>
+                        <div class="bg-cyan-50 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Flight 3: Leonid Return (Oct 25)</p>
+                            <a href="Leonid Tblisi - Kazan.pdf" class="text-blue-600 hover:text-blue-800 text-sm underline">📥 Leonid's Return Ticket</a>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Flight 4: Tbilisi → Istanbul</p>
+                            <a href="Tblisi - Istambul.pdf" class="text-blue-600 hover:text-blue-800 text-sm underline">📥 Family Tickets (4 pax)</a>
+                        </div>
+                        <div class="bg-amber-50 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Flight 5: Istanbul → Buenos Aires</p>
+                            <a href="Istambul - Buenos Aires.pdf" class="text-blue-600 hover:text-blue-800 text-sm underline">📥 Family Tickets (4 pax)</a>
+                        </div>
                     </div>
                 </div>
-                <div class="collapsible-content" id="contact-content">
-                    <div class="p-4 mt-4">
-                        <div class="grid md:grid-cols-2 gap-4">
+
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="font-bold text-lg mb-3">📞 Reservation Codes</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
                             <div class="bg-blue-50 p-4 rounded">
                                 <h3 class="font-bold mb-2">Turkish Airlines</h3>
                                 <p class="text-sm font-mono">Reservation: S37S3U (Miguel)</p>
@@ -500,7 +476,7 @@
         // Initialize hero map
         const heroMap = L.map('hero-map', {
             zoomControl: true,
-            attributionControl: true,
+            attributionControl: false,
             scrollWheelZoom: false,
             dragging: true,
             doubleClickZoom: false
@@ -508,7 +484,7 @@
 
         // Add OpenStreetMap tiles to hero map
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
+            attribution: '',
             opacity: 1
         }).addTo(heroMap);
 
@@ -616,15 +592,6 @@
         window.addEventListener('resize', () => {
             setTimeout(generateScrollingMapTiles, 100);
         });
-
-        // Collapsible sections functionality
-        function toggleSection(sectionId) {
-            const content = document.getElementById(sectionId + '-content');
-            const chevron = document.getElementById(sectionId + '-chevron');
-
-            content.classList.toggle('active');
-            chevron.classList.toggle('rotate');
-        }
 
         // Smooth scroll reveal for sections
         const observerOptions = {
