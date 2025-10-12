@@ -1,5 +1,5 @@
 // Service Worker for offline caching
-const CACHE_NAME = 'travel-anastasia-v9';
+const CACHE_NAME = 'travel-anastasia-v10';
 const TILE_CACHE_NAME = 'map-tiles-v1';
 
 // Static assets to cache immediately
